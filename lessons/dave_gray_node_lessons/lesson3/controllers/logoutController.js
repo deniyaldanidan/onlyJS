@@ -1,33 +1,20 @@
-const usersDB = {
-    users: require("../model/users.json"),
-    setUsers: function(data) { this.users = data }
-}
+const User = require("../model/User");
 
-const fsPromises = require('fs').promises;
-const path = require('path');
 
 const handleLogout = async (req, res)=>{
     // todo On Client-side, delete the access-token
     const cookies = req.cookies;
-    if (!cookies?.jwt) return res.sendStatus(204); // * Success-No_Content
-    
+    // console.log(cookies);
+    if (!cookies?.jwt) return res.sendStatus(201); // * Success-No_Content
+    // console.log("Has cookie")
     const refreshToken = cookies.jwt;
-    // ? Is refreshToken in DB?
-    const foundUser = usersDB.users.find(curr_user=>curr_user.refreshToken===refreshToken);
-    
-    if(!foundUser){
-        res.clearCookie('jwt', {httpOnly: true});
-        return res.sendStatus(204);
-    }
-
-    // ? Delete refresh-token in the database
-    usersDB.setUsers(usersDB.users.map(curr_user=>{
-        let {refreshToken, ...rest} = curr_user
-        return curr_user.username === foundUser.username ? rest : curr_user;
-    }))
-    await fsPromises.writeFile(path.join(__dirname, '..', 'model', 'users.json'), JSON.stringify(usersDB.users));
+    // ? Delete the refershToken from the Database
+    const loggedOut = await User.findOneAndUpdate({refreshToken}, {refreshToken:null}, {
+        returnDocument:"after"
+    }).exec();
+    console.log(loggedOut);
     // ? Delete the cookie
-    res.clearCookie('jwt', {httpOnly: true, secure: true, sameSite: 'None'});
+    res.clearCookie('jwt', {httpOnly: true, sameSite: 'None'});//, secure:true });
     return res.sendStatus(204);
 }
 

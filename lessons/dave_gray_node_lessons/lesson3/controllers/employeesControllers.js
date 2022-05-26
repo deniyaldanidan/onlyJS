@@ -1,14 +1,15 @@
-const {v4:uuid} = require('uuid');
 const {capitalize} = require('voca');
-const data = {};
-data.employees = require("../model/employees.json");
+const Employee = require('../model/Employee');
 
-const getAllEmployees = (req, res)=>{
-    res.status(200).json(data.employees);
+const getAllEmployees = async(req, res)=>{
+    const allEmployees = await Employee.find({});
+    res.status(200).json(allEmployees);
 }
 
-const createNewEmployee = (req, res)=>{
+const createNewEmployee = async (req, res)=>{
     let {firstname, lastname} = req.body;
+    // shorthand for below conditions
+    // if (!req?.body?.firstname || !req?.body?.lastname) return res.status(400).json({error: "missing fields"}); 
     if(!firstname || !firstname.length){
         res.status(404).json({error: "Firstname parameter is missing"});
         return;
@@ -17,42 +18,40 @@ const createNewEmployee = (req, res)=>{
         res.status(404).json({error: "Lastname parameter is missing"});
         return;
     }
-    let id = uuid();
-    data.employees.push({
-        id: id, 
-        firstname: capitalize(firstname), 
+    const newEmployee = await Employee.create({
+        firstname: capitalize(firstname),
         lastname: capitalize(lastname)
     });
-    res.status(200).json(data.employees);
+
+    res.status(200).json(newEmployee);
 }
 
-const updateEmployee = (req, res)=>{
+const updateEmployee = async (req, res)=>{
     if(!req.body.id) return res.status(404).json({"error": "Invalid request"});
     
-    data.employees.map(emp=>{
-        if(emp.id==req.body.id){
-            (req.body.firstname && req.body.firstname.length) && (emp.firstname= capitalize(req.body.firstname));
-            (req.body.lastname && req.body.lastname.length) && (emp.lastname= capitalize(req.body.lastname));
-            return emp;
-        }
-        return emp;
-    })
+    const myEmployee = await Employee.findById(req.body.id);
+    req.body.firstname && (myEmployee.firstname = capitalize(req.body.firstname));
+    req.body.lastname && (myEmployee.lastname = capitalize(req.body.lastname));
+    await myEmployee.save();
 
-    res.status(200).json(data.employees);
+    res.status(200).json(myEmployee);
 }
 
-const deleteEmployee = (req, res)=>{
+const deleteEmployee = async (req, res)=>{
     if(!req.body.id) return res.status(404).json({"error": "Invalid request"});
     
-    data.employees = data.employees.filter(emp=>{
-        return emp.id !== req.body.id
-    });
+    await Employee.findByIdAndDelete(req.body.id);
     
-    res.json(data.employees);
+    res.json({success: "Employee deleted"});
 }
 
-const getOneEmployee = (req, res)=>{
-    req.params.id ? res.status(200).json(data.employees.find(()=>req.params.id)) : res.status(404).json({error: "Id Missing"});
+const getOneEmployee = async (req, res)=>{
+    const empId = req.params.id;
+    const myEmployee = await Employee.findById(empId).exec()
+    if (!myEmployee) {
+        res.status(404).json({error: "Employee not found"});
+    }
+    res.status(200).json(myEmployee);
 }
 
 module.exports = {

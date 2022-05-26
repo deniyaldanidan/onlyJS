@@ -1,11 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const path = require("path");
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const corsOptions = require('./config/corsOptions');
-
+const mongoose = require('mongoose');
+const connectDB = require('./config/dbConn');
 const app = express();
 const PORT = process.env.PORT || 3500;
+
+// ? connect to MongoDB
+connectDB();
 
 // ? Built-in middlewares
 // ? Content-Type: application/x-www-form-urlencoded [For Submitted-Form-Data]
@@ -40,7 +45,10 @@ app.use("/employees", verifyJWT, require("./routes/api/employees"));
 app.all("*", require("./middleware/handle404"));
 app.use(require('./middleware/errorHandler'));
 
-app.listen(PORT, ()=>console.log(`Server running on ${PORT}`));
+mongoose.connection.once("open", ()=>{
+    console.log('Connected to MongoDB');
+    app.listen(PORT, ()=>console.log(`Server running on ${PORT}`));
+})
 
 // process.on("uncaughtException", (err)=>{
 //     errLogger(err);
