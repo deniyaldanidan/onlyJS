@@ -1,0 +1,43 @@
+.open-btn{
+    display: block;
+    width: fit-content;
+    margin: auto;
+    background-color: yellow;
+    color: black;
+    padding: 1.5rem 3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 400ms ease-in-out;
+}
+
+.open-btn:hover{
+    background-color: aquamarine;
+}
+
+.my-dialog{
+    /* position: absolute; */
+    /* top: 25%; */
+    /* left: 40%; */
+    width: 300px;
+    background-color: aquamarine;
+    border: yellow 1px solid;
+    cursor: move;
+}
+
+.dialog-info{
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: orangered;
+    margin-bottom: 80px;
+}
+
+.my-dialog button{
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

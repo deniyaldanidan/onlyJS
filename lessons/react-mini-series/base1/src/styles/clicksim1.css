@@ -1,0 +1,27 @@
+.container{
+    display: block;
+    width: fit-content;
+    margin: auto;
+    color: black;
+}
+
+.btn,.contents{
+    width: 180px;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.btn{
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+.contents{
+    background-color: aqua;
+    margin-top: 2px;
+    display: none;
+}
+
+.contents.show{
+    display: block;
+}
