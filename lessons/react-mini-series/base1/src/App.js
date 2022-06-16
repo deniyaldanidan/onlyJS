@@ -6,8 +6,9 @@
 // import LayoutHook from "./containers/LayoutHook";
 // import DefferedHook from "./containers/DefferedHook";
 // import ClickSim1 from "./components/ClickSim1";
+// import Draggable1 from "./containers/Draggable1";
 
-import Draggable1 from "./containers/Draggable1";
+import Peoples from "./containers/Peoples";
 
 // import {useState} from 'react';
 // import useLocalStorage from './hooks/useLocalStorage';
@@ -28,7 +29,9 @@ function App() {
       {/* <DefferedHook /> */}
       {/* <input type="text" value={name} onChange={e=>setName(e.target.value)}  /> */}
       {/* <ClickSim1 /> */}
-      <Draggable1 />
+      {/* <Draggable1 /> */}
+      <Peoples />
+      
     </>
   );
 }
