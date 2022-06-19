@@ -1,0 +1,30 @@
+body{
+    background-color: black;
+}
+
+#card-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: center;
+}
+
+.card{
+    background-color: white;
+    font-size: 2.5rem;
+    font-weight: 400;
+    border-radius: .25rem;
+    padding: 10rem;
+    transform: translateX(300px);
+    opacity: 0;
+    transition: 500ms;
+}
+
+.card:nth-of-type(even){
+    background-color: aqua;
+}
+
+.card.show {
+    transform: translateX(0);
+    opacity: 1;
+}
