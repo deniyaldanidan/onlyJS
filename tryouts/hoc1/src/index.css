@@ -32,6 +32,10 @@ button{
   transition: all 400ms;
 }
 
+button.errBTN{
+  background-color:tomato;
+}
+
 button:hover{
   background-color:seagreen;
   color: white;
