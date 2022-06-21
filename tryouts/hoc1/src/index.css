@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #222525;
+  color: white;
 }
 
 code {
@@ -42,4 +43,5 @@ button:hover{
   background-color: aliceblue;
   font-size: 1.75rem;
   padding: 1rem;
+  color: #222525;
 }

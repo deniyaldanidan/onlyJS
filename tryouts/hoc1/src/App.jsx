@@ -1,19 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
+import BtnCnt from "./BtnCnt";
 import Modal1 from "./Modal1";
 import Modal2 from "./Modal2";
 
 
 function App() {
-  const [mod1, setMod1] = useState(false);
-  const [mod2, setMod2] = useState(false);
 
   return (
     <div className="App">
       <div className="btns">
-        <button onClick={()=>setMod1(prev=>!prev)}>BTN-1</button>
-        <button onClick={()=>setMod2(prev=>!prev)} >BTN-2</button>
-        {mod1 && <Modal1 />}
-        {mod2 && <Modal2/>}
+        <BtnCnt render={(show)=>(show && <Modal1 />)} text="BTN-1" />
+        <BtnCnt render={(show)=>(show && <Modal2 />)} text="BTN-2" />
       </div>
     </div>
   );
