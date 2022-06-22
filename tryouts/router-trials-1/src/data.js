@@ -23,6 +23,46 @@ const todoData = [
         id: 5,
         name: "Brunch Meet with Friends",
         deadline: "Friday"
+    },
+    {
+        id: 6,
+        name: "Business Meeting",
+        deadline: "Thursday"
+    },
+    {
+        id: 7,
+        name: "Haircut",
+        deadline: "Friday"
+    },
+    {
+        id: 8,
+        name: "Clubbing",
+        deadline: "Saturday"
+    },
+    {
+        id: 9,
+        name: "Dinner with Alina",
+        deadline: "Saturday"
+    },
+    {
+        id: 10,
+        name: "Church",
+        deadline: "Saturday Morning"
+    },
+    {
+        id: 11,
+        name: "Lunch with Family",
+        deadline: "Sunday"
+    },
+    {
+        id: 12,
+        name: "Dinner with Alina",
+        deadline: "Sunday"
+    },
+    {
+        id: 13,
+        name: "Brunch with Friends",
+        deadline: "Monday"
     }
 ];
 
