@@ -1,66 +1,68 @@
+import { uniqueId } from 'lodash';
+
 const todoData = [
     {
-        id: 1,
+        id: 'todo_1',
         name: "Do the Dishes",
         deadline: "Today"
     },
     {
-        id: 2,
+        id: 'todo_2',
         name: "Date with Alina",
         deadline: "Tomorrow"
     },
     {
-        id: 3,
+        id: 'todo_3',
         name: "Meet Sarah",
         deadline: "Today Evening"
     },
     {
-        id: 4,
+        id: 'todo_4',
         name: "Dinner with Anna",
         deadline: "Today"
     },
     {
-        id: 5,
+        id: 'todo_5',
         name: "Brunch Meet with Friends",
         deadline: "Friday"
     },
     {
-        id: 6,
+        id: 'todo_6',
         name: "Business Meeting",
         deadline: "Thursday"
     },
     {
-        id: 7,
+        id: 'todo_7',
         name: "Haircut",
         deadline: "Friday"
     },
     {
-        id: 8,
+        id: 'todo_8',
         name: "Clubbing",
         deadline: "Saturday"
     },
     {
-        id: 9,
+        id: 'todo_9',
         name: "Dinner with Alina",
         deadline: "Saturday"
     },
     {
-        id: 10,
+        id: 'todo_10',
         name: "Church",
         deadline: "Saturday Morning"
     },
     {
-        id: 11,
+        id: 'todo_11',
         name: "Lunch with Family",
         deadline: "Sunday"
     },
     {
-        id: 12,
+        id: 'todo_12',
         name: "Dinner with Alina",
         deadline: "Sunday"
     },
     {
-        id: 13,
+        id: 'todo_13',
         name: "Brunch with Friends",
         deadline: "Monday"
     }
@@ -71,4 +73,9 @@ export default todoData;
 
 export function getTodo(todoId){
     return todoData.find(todo=>todo.id===todoId)
+}
+
+export function addTodo({name, deadline}){
+    const newData = {id: uniqueId("newTodo_"), name,  deadline}
+    todoData.push(newData);
 }

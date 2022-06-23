@@ -1,13 +1,15 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import QueryNavLink from './QueryNavLink'
 
-const TodoCard = ({todo}) => {
+
+const TodoCard = ({todo, clickHandler}) => {
   return (
-    <NavLink className={({isActive})=> (isActive ? "chosen" : "" ) + " todo-card"} to={`/todo/${todo.id}`}>
+    <QueryNavLink className={({isActive})=> (isActive ? "chosen" : "" ) + " todo-card"} to={`/todo/${todo.id}`} onClick={clickHandler} >
         <img src={`https://picsum.photos/seed/${todo.id}/350/300`} alt="" />
         <div className="todo-name">{todo.name}</div>
-    </NavLink>
+    </QueryNavLink>
   )
 }
+
 
 export default TodoCard

@@ -64,12 +64,21 @@ a{
   padding: 10px 50px;
 }
 
-.todo-card{
+.todo-card, .add-todo-card{
   width: 330px;
   background-color: #333;
   padding-bottom: 1rem;
   transition: 400ms ease-in-out;
-  border: none;
+  border: solid 5px transparent;
+}
+
+.add-todo-card{
+  height: 300px;
+  text-align: center;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .todo-card img{
@@ -84,8 +93,9 @@ a{
   border-image-source: linear-gradient(60deg, #b16ec4, #5f97b9);
 }
 
-.todo-card:hover{
+.add-todo-card:hover,.todo-card:hover{
   transform: scale(1.05);
+  color: #1ff;
 }
 
 .todo-name{
@@ -100,13 +110,14 @@ a{
   width: 80%;
   margin: 30px auto;
   background-color: #444;
-  padding: 3rem;
+  padding-bottom: 2rem;
 }
 
 .todo-showcase img{
   display: block;
-  width: 80%;
+  width: 100%;
   margin: 10px auto;
+  object-fit: cover;
 }
 
 .todo-show-text{
@@ -124,4 +135,65 @@ a{
   outline: none;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+.add-todo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 25px;
+  background-color: #444;
+  padding: 60px 0;
+}
+
+.add-todo-head{
+  color: #eee;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.inp-grp .inp-label{
+  font-size: 1.25rem;
+  color: #ddd;
+  font-weight: 500;
+  text-align: left;
+  text-indent: 1.25rem;
+}
+
+.inp-grp input{
+  margin-top: 6px;
+  margin-bottom: 2px;
+  font-size: 1.25rem;
+  padding: 1rem 1.25rem;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+}
+
+.inp-error{
+  text-indent: 1.125rem;
+  font-size: 1rem;
+  color: #f66;
+  line-height: 1.125rem;
+  opacity: 0;
+}
+
+.inp-error.show{
+  opacity: 1;
+}
+
+.add-todo button{
+  padding: 1rem 4rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4rem;
+  background-color: #aaa;
+  cursor: pointer;
+  transition: all 500ms ease-in-out;
+}
+
+.add-todo button:hover{
+  background-color: white;
 }

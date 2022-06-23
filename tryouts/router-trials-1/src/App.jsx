@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import About from './components/About';
+import AddTodo from './components/AddTodo';
 import Faq from './components/Faq';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/todo" element={<Todos />}>
             <Route index element={<h1 className='page-banner'>Choose one Todo to view it.</h1>} />
             <Route path=':todoId' element={<Todo />} />
+            <Route path='add' element={<AddTodo />} />
           </Route>
           {/* 404 Route */}
           <Route path='*' element={<h1 className='page-banner'>404 Not Found</h1>} />

@@ -4,10 +4,10 @@ import {getTodo} from '../data'
 
 const Todo = () => {
     let params = useParams();
-    let mytodo = getTodo(parseInt(params.todoId, 10));
+    let mytodo = getTodo(params.todoId);
     return (
         <div className='todo-showcase'>
-            {mytodo ? (<><img src={`https://picsum.photos/seed/${mytodo.id}/1000/400`} alt="" />
+            {mytodo ? (<><img src={`https://picsum.photos/seed/${mytodo.id}/900/500`} alt="" />
             <div className="todo-show-text">{mytodo.name}</div>
             <div className="todo-show-text">{mytodo.deadline}</div></>) : (
                 <h1 className='page-banner'>No Such Todos Found</h1>
