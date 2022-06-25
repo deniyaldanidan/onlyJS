@@ -18,14 +18,14 @@ code {
     monospace;
 }
 
-.register-form{
+.my-form{
   max-width: 300px;
   margin: 40px auto;
   background-color: #222;
   padding: 50px;
 }
 
-.register-form h1{
+.my-form h1{
   text-align: center;
 }
 
@@ -78,37 +78,37 @@ code {
   display: block;
 }
 
-.register-form .submit-btn{
+.my-form .submit-btn{
   width: 100%;
   font-size: 1.375rem;
   font-weight: 500;
-  padding: 1rem;
+  padding: 0.7rem;
   border: none;
   outline: none;
   border-radius: 2rem;
   cursor: pointer;
 }
 
-.register-form .bottom-sec{
+.my-form .bottom-sec{
   margin-top: 40px;
   display: flex;
   column-gap: 10px;
   align-items: center;
 }
 
-.register-form .bottom-sec>p{
+.my-form .bottom-sec>p{
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
 }
 
-.register-form .bottom-sec>a{
+.my-form .bottom-sec>a{
   font-size: 1.125rem;
   font-weight: 500;
   text-decoration: none;
 }
 
-.register-form .bottom-sec>a:hover{
+.my-form .bottom-sec>a:hover{
   color: aquamarine;
 }
 

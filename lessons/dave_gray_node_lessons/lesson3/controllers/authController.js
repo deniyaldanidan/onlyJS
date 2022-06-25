@@ -28,8 +28,8 @@ const handleLogin = async (req, res)=>{
     // Saving refreshToken in database
     await User.updateOne({username:foundUser.username}, {refreshToken:refreshToken});
     console.log(refreshToken);
-    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 10*60*1000, sameSite: 'None'});//, secure: true }); // expiresIn 10minutes
-    res.json({'success': `User ${foundUser.username} is logged in`, accessToken});
+    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 10*60*1000, sameSite: 'None', secure: true }); // expiresIn 10minutes 
+    res.json({'success': `User ${foundUser.username} is logged in`, accessToken, roles});
 }
 
 module.exports = { handleLogin };

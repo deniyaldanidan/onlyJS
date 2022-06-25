@@ -88,7 +88,7 @@ const Register = () => {
     <>
     {
         success ? <div className="success">Success</div> :
-        <section className='register-form'>
+        <section className='my-form'>
             <h1>Register</h1>
             <p ref={errRef} className={`err-msg ${errMsg ? "show" : ""}`} >Error Happened: {errMsg}</p>
             <form onSubmit={handleSubmit} >
