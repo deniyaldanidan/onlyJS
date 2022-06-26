@@ -12,9 +12,9 @@ const handleLogout = async (req, res)=>{
     const loggedOut = await User.findOneAndUpdate({refreshToken}, {refreshToken:null}, {
         returnDocument:"after"
     }).exec();
-    console.log(loggedOut);
+    // console.log(loggedOut);
     // ? Delete the cookie
-    res.clearCookie('jwt', {httpOnly: true, sameSite: 'None'});//, secure:true });
+    res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure:true });
     return res.sendStatus(204);
 }
 

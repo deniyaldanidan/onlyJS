@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRef, useEffect, useState } from 'react';
-import axios from './api/axios'
+import axios from '../api/axios'
+import { Link } from 'react-router-dom';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -87,7 +88,7 @@ const Register = () => {
     return (
     <>
     {
-        success ? <div className="success">Success</div> :
+        success ? <div className="success">Success <Link to="/login"> Login here</Link></div> :
         <section className='my-form'>
             <h1>Register</h1>
             <p ref={errRef} className={`err-msg ${errMsg ? "show" : ""}`} >Error Happened: {errMsg}</p>
@@ -149,8 +150,9 @@ const Register = () => {
             </form>
             <div className="bottom-sec">
                 <p>Already Registered?</p>
-                <a href="/">Sign In</a>
+                <Link to="/login">Login</Link>
             </div>
+            <Link to="/linkpage">Go to LinkPage</Link>
         </section>
     }
     </>

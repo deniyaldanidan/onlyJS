@@ -1,18 +1,22 @@
 import React, {useState, useEffect, useRef} from 'react'
-import axios from './api/axios';
-import useAuth from './context/AuthProvider';
+import axios from '../api/axios';
+import useAuth from '../context/AuthProvider';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 const Login = () => {
+    const {setAuth} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const userRef = useRef();
     const errRef = useRef();
 
     const [user, setUser] = useState("");
     const [pwd, setPwd] = useState("");
 
-    const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState("");
 
-    const {auth, setAuth} = useAuth();
 
     useEffect(()=>{
         userRef.current.focus();
@@ -37,7 +41,7 @@ const Login = () => {
             setAuth({user, pwd, roles, accessToken});
             setUser("");
             setPwd("");
-            setSuccess(true);
+            navigate(from, {replace:true});
         } catch (err) {
             if(!err?.response){
                 setErrMsg("No server response");
@@ -53,9 +57,6 @@ const Login = () => {
     }
 
     return (
-        <>
-        {
-            success ? <div className="success">Success</div> :
         <section className="my-form">
             <p ref={errRef} className={`err-msg ${errMsg ? 'show' : ''}`}>{errMsg}</p>
             <h1>Login</h1>
@@ -72,11 +73,10 @@ const Login = () => {
             </form>
             <div className="bottom-sec">
                 <p>Don't have an account yet? </p>
-                <a href="/">Register</a>
+                <Link to="/register">Register</Link>
             </div>
+            <Link to="/linkpage">Go to LinkPage</Link>
         </section>
-        }
-        </>
     )
 }
 

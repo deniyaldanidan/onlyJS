@@ -1,4 +1,4 @@
-# Used Passwords:
+# Used Passwords
 
 - P@ssw0rd
 - password
