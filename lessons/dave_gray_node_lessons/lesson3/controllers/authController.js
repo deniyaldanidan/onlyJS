@@ -22,13 +22,13 @@ const handleLogin = async (req, res)=>{
                 username: foundUser.username,
                 roles: roles
             }
-        }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '5m'});
+        }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '30s'});
         
-    const refreshToken = jwt.sign({username: foundUser.username}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '10m'});
+    const refreshToken = jwt.sign({username: foundUser.username}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '1m'});
     // Saving refreshToken in database
     await User.updateOne({username:foundUser.username}, {refreshToken:refreshToken});
     console.log(refreshToken);
-    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 10*60*1000, sameSite: 'None', secure: true }); // expiresIn 10minutes 
+    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 1*60*1000, sameSite: 'None', secure: true }); // expiresIn 10minutes 
     res.json({'success': `User ${foundUser.username} is logged in`, accessToken, roles});
 }
 
