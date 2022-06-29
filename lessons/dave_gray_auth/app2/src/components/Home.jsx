@@ -1,22 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import axios from '../api/axios';
-import useAuth from '../context/AuthProvider';
+import useLogout from '../context/useLogout';
 
 const Home = () => {
-  const {setAuth} = useAuth();
-
-  const signoutHandler = async()=>{
-    try {
-      const response = await axios.get("/logout", {
-        withCredentials: true
-      });
-      console.log(response);
-      setAuth({});
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const logout = useLogout()
 
   return (
     <div className="my-box">
@@ -26,7 +13,7 @@ const Home = () => {
       <Link to="/admin">Go to Admin Page</Link>
       <Link to="/lounge">Go to Lounge Page</Link>
       <Link to="/linkpage">Go to LinkPage Page</Link>
-      <button onClick={signoutHandler}>Sign Out</button>
+      <button onClick={()=> logout()}>Sign Out</button>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import Unauthorized from './components/Unauthorized';
 import Lounge from './components/Lounge';
 import LinkPage from './components/LinkPage';
 import RequireAuth from "./components/RequireAuth";
+import PersistLogin from "./components/PersistLogin";
 import { Routes, Route } from "react-router-dom";
 
 
@@ -29,21 +30,23 @@ function App() {
           <Route path="unauthorized" element={<Unauthorized />} />
 
           {/* Protected Routes */}
-          {/* Allowed Only for All with basic user privilege */}
-          <Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
-            <Route path="/" element={<Home />} />
-          </Route>
-          {/* Editor Route */}
-          <Route element={<RequireAuth allowedRoles={[ROLES.EDITOR]}/>}>
-            <Route path="editor" element={<Editor />} />
-          </Route>
-          {/* Admin Route */}
-          <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
-            <Route path="admin" element={<Admin />} />
-          </Route>
-          {/* Route For Both Admin and Editor */}
-          <Route element={<RequireAuth allowedRoles={[ROLES.EDITOR, ROLES.ADMIN]}/>}>
-            <Route path="lounge" element={<Lounge />} />
+          <Route element={<PersistLogin />}>
+            {/* Allowed Only for All with basic user privilege */}
+            <Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
+              <Route path="/" element={<Home />} />
+            </Route>
+            {/* Editor Route */}
+            <Route element={<RequireAuth allowedRoles={[ROLES.EDITOR]}/>}>
+              <Route path="editor" element={<Editor />} />
+            </Route>
+            {/* Admin Route */}
+            <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
+              <Route path="admin" element={<Admin />} />
+            </Route>
+            {/* Route For Both Admin and Editor */}
+            <Route element={<RequireAuth allowedRoles={[ROLES.EDITOR, ROLES.ADMIN]}/>}>
+              <Route path="lounge" element={<Lounge />} />
+            </Route>
           </Route>
 
           {/* Catch all */}

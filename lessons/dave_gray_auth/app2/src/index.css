@@ -112,6 +112,19 @@ code {
   color: aquamarine;
 }
 
+.my-form .my-check{
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.my-form .my-check label{
+  color: aliceblue;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
 .success{
   display: flex;
   justify-content: center;

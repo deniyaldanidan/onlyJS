@@ -2,6 +2,8 @@ import React, {useState, useEffect, useRef} from 'react'
 import axios from '../api/axios';
 import useAuth from '../context/AuthProvider';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
+import useInput from '../hooks/useInput';
+import useToggle from '../hooks/useToggle';
 
 const Login = () => {
     const {setAuth} = useAuth();
@@ -12,10 +14,12 @@ const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState("");
+    const [user, resetUser, userAttributeObj] = useInput('username', "");
     const [pwd, setPwd] = useState("");
 
     const [errMsg, setErrMsg] = useState("");
+
+    const [check, toggleCheck] = useToggle('persist', false);
 
 
     useEffect(()=>{
@@ -39,7 +43,7 @@ const Login = () => {
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({user, pwd, roles, accessToken});
-            setUser("");
+            resetUser();
             setPwd("");
             navigate(from, {replace:true});
         } catch (err) {
@@ -63,11 +67,15 @@ const Login = () => {
             <form onSubmit={submitHandler}>
                 <div className="inp-grp">
                     <label htmlFor="username" className='label'>Username</label>
-                    <input ref={userRef} type="text" id='username' value={user} onChange={e=>setUser(e.target.value)} />
+                    <input ref={userRef} type="text" id='username' {...userAttributeObj}/>
                 </div>
                 <div className="inp-grp">
                     <label htmlFor="pwd" className='label'>Password</label>
                     <input type="password" id='pwd' value={pwd} onChange={e=>setPwd(e.target.value)} />
+                </div>
+                <div className='my-check'>
+                    <label>Do you trust This device?</label>
+                    <input type="checkbox" onChange={toggleCheck} checked={check} />
                 </div>
                 <button className='submit-btn'>Login</button>
             </form>
