@@ -1,0 +1,186 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Damn you",
+      "excerpt": "Stella said Damn you",
+      "date": "2022-07-10T11:41:20.885Z",
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "user": 0
+    },
+    {
+      "id": 2,
+      "title": "Story of my life",
+      "excerpt": "Song by the band Directions",
+      "date": "2022-07-10T11:46:20.886Z",
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "user": 1
+    },
+    {
+      "id": 3,
+      "title": "Buckle up",
+      "excerpt": "Steve said Buckle up",
+      "date": "2022-07-10T11:48:20.886Z",
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "user": 2
+    },
+    {
+      "id": 4,
+      "title": "BoomBox",
+      "excerpt": "Song by the singer Lauren",
+      "date": "2022-07-10T11:45:20.886Z",
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "user": 3
+    },
+    {
+      "id": 5,
+      "title": "Silver Nights",
+      "excerpt": "Song by the Solar Newman",
+      "date": "2022-07-10T11:58:20.886Z",
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 2,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "user": 4
+    },
+    {
+      "title": "Hello world",
+      "excerpt": "This post is called Hello World.",
+      "user": 3,
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "date": "2022-07-12T06:58:42.213Z",
+      "id": 6
+    },
+    {
+      "title": "Barber",
+      "excerpt": "This post is about the Barber",
+      "user": 3,
+      "reactions": {
+        "thumbsUp": 0,
+        "hooray": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "date": "2022-07-12T07:00:30.254Z",
+      "id": 7
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "name": "Janet Jacob"
+    },
+    {
+      "id": 1,
+      "name": "R Madhavan"
+    },
+    {
+      "id": 2,
+      "name": "Selene Davis"
+    },
+    {
+      "id": 3,
+      "name": "Johnson Samuel"
+    },
+    {
+      "id": 4,
+      "name": "Allen Dave"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "name": "Notify 1",
+      "date": "2022-07-13T18:29:01.898Z",
+      "user": 0
+    },
+    {
+      "id": 2,
+      "name": "Notify 2",
+      "date": "2022-07-10T11:41:20.885Z",
+      "user": 1
+    },
+    {
+      "id": 3,
+      "name": "Notify 3",
+      "date": "2022-07-10T11:45:20.886Z",
+      "user": 1
+    },
+    {
+      "id": 4,
+      "name": "Notify 4",
+      "date": "2022-07-10T11:48:20.886Z",
+      "user": 1
+    },
+    {
+      "id": 5,
+      "name": "Notify 5",
+      "date": "2022-07-13T18:10:01.898Z",
+      "user": 2
+    },
+    {
+      "id": 6,
+      "name": "Notify 6",
+      "date": "2022-07-13T14:10:01.898Z",
+      "user": 3
+    },
+    {
+      "id": 7,
+      "name": "Notify 7",
+      "date": "2022-07-13T20:10:01.898Z",
+      "user": 4
+    },
+    {
+      "id": 8,
+      "name": "Notify 8",
+      "date": "2022-07-13T10:10:01.898Z",
+      "user": 4
+    },
+    {
+      "id": 9,
+      "name": "Notify 9",
+      "date": "2022-07-13T11:18:01.898Z",
+      "user": 3
+    },
+    {
+      "id": 10,
+      "name": "Notify 10",
+      "date": "2022-07-13T13:10:01.898Z",
+      "user": 2
+    }
+  ]
+}
