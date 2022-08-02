@@ -1,0 +1,18 @@
+{
+  "name": "sass-lessons-1",
+  "version": "1.0.0",
+  "description": "Learning SASS",
+  "main": "index.html",
+  "scripts": {
+    "serve-sass": "sass --watch ./sass/style.scss ./styles/output.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sass"
+  ],
+  "author": "deniyaldanidan",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.54.0"
+  }
+}
