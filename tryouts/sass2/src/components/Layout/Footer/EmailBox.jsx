@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import '../../styles/cta.scss';
+import '../../../styles/email-section.scss';
 import { HiOutlineMail, HiOutlineMailOpen } from 'react-icons/hi';
 
-const CTA = () => {
+const EmailBox = () => {
     const [hover, setHover] = useState(false);
   
     return (
-        <div className="cta">
+        <div className="email-section">
             <div className="head">
                 Subscribe to our newsletter
             </div>
@@ -26,4 +26,4 @@ const CTA = () => {
     )
 }
 
-export default CTA
+export default EmailBox;

@@ -1,23 +1,49 @@
 @import './config';
 
+$pad-left-right: 3rem;
+
 .header{
-    // position:sticky;
-    // width: 93.8%;
-    top: 0;
-    left: 0;
-    // width: 100%;
+    height: 140px;
+    background-color: $lightish-blue;
+}
+
+.top-header{
+    background-color: $darkish-blue;
+    padding: 0.75rem $pad-left-right;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $lightish-blue;
-    padding: 1.5rem 3rem;
+
+    .top-email{
+        color: $orangish-yellow;
+        font-size: $font-md;
+        font-weight: $font-medium;
+    }
+
+    .top-socials{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 20px;
+    }
+}
+
+.bottom-header{
+    // max-width: inherit;
+    width: inherit;
     height: fit-content;
+    padding: 1.5rem 0;
+    background-color: $lightish-blue;
+    .header-contents{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 $pad-left-right;
+    }
 
     .logo{
         img{
             width: 14.5rem; // 232px
-            // width: auto;
-            // height: 100%;
         }
     }
 
@@ -131,4 +157,11 @@
             font-size: $font-xl;
         }
     }
+}
+
+.sticky-header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }

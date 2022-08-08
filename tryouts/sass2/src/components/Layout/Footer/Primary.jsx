@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaTwitter, FaLinkedinIn} from 'react-icons/fa';
-import footerLogo from '../../assets/saascommunity-logo-white.png';
+import footerLogo from '../../../assets/saascommunity-logo-white.png';
 import FooterBlogs from './FooterBlogs';
 
 const Primary = () => {

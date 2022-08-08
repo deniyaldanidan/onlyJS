@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react'
 import {Link} from 'react-router-dom';
 import {FiMenu} from 'react-icons/fi'
 import {AnimatePresence, motion} from 'framer-motion';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '../../../hooks/useClickOutside';
 
 const menuAnimation={
     hidden: {

@@ -1,5 +1,32 @@
+@import './config';
+
 .container-md{
     margin: auto;
     max-width: 1260px;
     padding: 2rem;
+}
+
+.social-icon, .social-icon-sm{
+    font-size: $font-xxl;
+    line-height: 24px;
+    padding: 6px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.social-icon-sm{
+    font-size: $font-sm;
+    line-height: 14px;
+}
+
+.linkedin{
+    background-color: #0072b1;
+    color: white;
+}
+
+.twitter{
+    background-color: #00acee;
+    color: white;
 }

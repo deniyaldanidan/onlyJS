@@ -1,0 +1,35 @@
+@import '../config';
+
+.hero-sec{
+    background-color: $lightish-blue;
+    padding: 110px 0 180px 0;
+    
+    .intro-sec{
+        color: $darkish-blue;
+        .intro-big{
+            font-size: $font-giant;
+            text-align: center;
+            font-family: $font-rambla;
+            font-weight: $font-bold;
+            max-width: 59.4rem;
+            margin: auto;
+            line-height: 0.98em;
+
+            &:before{
+                content: " ";
+                display: block;
+                margin: 30px auto;
+                margin-top: 0;
+                height: 4px;
+                width: 50px;
+                background-color: $orangish-yellow;
+
+            }
+        }
+        .intro-sm{
+            text-align: center;
+            font-size: $font-xl;
+            margin-top: 20px;
+        }
+    }
+}

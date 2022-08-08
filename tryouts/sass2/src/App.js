@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
+import Home from './components/Home/Home';
+import Layout from './components/Layout/Layout';
 
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className='app'>
       <Routes>
         <Route path='/' element={<Layout />} >
+          <Route index element={<Home/>} />
         </Route>
       </Routes>
     </div>
