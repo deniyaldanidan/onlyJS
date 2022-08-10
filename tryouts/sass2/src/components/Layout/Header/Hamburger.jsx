@@ -7,10 +7,12 @@ import useClickOutside from '../../../hooks/useClickOutside';
 const menuAnimation={
     hidden: {
         opacity: 0,
+        x: "-50%",
         y: '-20px'
     },
     visible: {
         opacity: 1,
+        x: "-50%",
         y: 0,
         transition: {
             type: 'spring',
@@ -39,18 +41,18 @@ const Hamburger = () => {
             </motion.div>
             <AnimatePresence>
                 {show && <motion.div 
-                    className="menus"
+                    className="ham-menus"
                     variants={menuAnimation}
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
                 >
-                    <Link to="/companies" className='menu' >SaaS Companies</Link>
-                    <Link to="/investors" className='menu' >SaaS Investors</Link>
-                    <Link to="/jobs" className='menu' >SaaS Jobs</Link>
-                    <Link to="/service" className='menu' >Matching Service</Link>
-                    <Link to="/blogs" className='menu' >Blog</Link>
-                    <Link to="/about" className='menu' >About</Link>
+                    <Link to="/companies" className='ham-menu' >SaaS Companies</Link>
+                    <Link to="/investors" className='ham-menu' >SaaS Investors</Link>
+                    <Link to="/jobs" className='ham-menu' >SaaS Jobs</Link>
+                    <Link to="/service" className='ham-menu' >Matching Service</Link>
+                    <Link to="/blogs" className='ham-menu' >Blog</Link>
+                    <Link to="/about" className='ham-menu' >About</Link>
                 </motion.div>}
             </AnimatePresence>
         </div>

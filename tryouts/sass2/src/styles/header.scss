@@ -3,7 +3,7 @@
 $pad-left-right: 3rem;
 
 .header{
-    height: 140px;
+    height: 135px;
     background-color: $lightish-blue;
 }
 
@@ -68,6 +68,7 @@ $pad-left-right: 3rem;
         display: flex;
         align-items: center;
         column-gap: 2.5rem;
+        // position: static;
 
         .signin{
             display: flex;
@@ -121,14 +122,17 @@ $pad-left-right: 3rem;
         cursor: pointer;
     }
 
-    .menus{
+    .ham-menus{
         position: absolute;
         top: calc(100% + 14px);
-        left: -230%;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 10;
         background-color: $text-white;
+        color: $text-black;
+        display: flex;
         flex-direction: column;
-        row-gap: 30px;
+        row-gap: 25px;
         border-radius: 10px;
         // background-color: black;
         padding: 2rem 1.5rem;
@@ -152,9 +156,14 @@ $pad-left-right: 3rem;
             border-width: 15px;
         }
 
-        .menu{
+        .ham-menu{
             color: #50596e;
             font-size: $font-xl;
+
+            &:hover{
+                color: $darkish-blue;
+                font-weight: $font-medium;
+            }
         }
     }
 }
@@ -164,4 +173,5 @@ $pad-left-right: 3rem;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 10;
 }

@@ -1,0 +1,124 @@
+@import '../config';
+
+.my-select{
+    position: relative;
+    width: 30ch;
+    
+    @media (max-width: 990px){
+        width: 100%;
+    }
+    
+    .select-display{
+        background-color: white;
+        padding: 1rem 1.5rem 1rem 0.75rem;
+        color: rgba($color: $text-black, $alpha: 0.65);
+        font-size: $font-md;
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+        border-right: rgba($color: $text-black, $alpha: 0.2) solid 1px;
+        cursor: pointer;
+
+        @media (max-width:990px){
+            border-right: none;
+        }
+
+        &>span{
+            flex-grow: 1;
+        }
+        
+
+        &:before{
+            content: "III";
+            font-family: $font-roboto;
+            color: $orangish-yellow
+            ;
+            transform: rotate(90deg);
+        }
+
+        &:after{
+            display: inline-block;
+            content: " ";
+            width: 5px;
+            height: 5px;
+            border-right: $orangish-yellow solid 2px;
+            border-bottom: $orangish-yellow solid 2px;
+            transform: rotate(45deg) translateY(-2.5px);
+            transition: transform 300ms ease-in-out;
+        }
+
+        &.dropped:after{
+            transform: rotate(225deg) translateY(-2.5px);
+        }
+    }
+
+    .select-dropdown{
+        position: absolute;
+        top: calc(100% + 5px);
+        z-index: 1;
+        background-color: white;
+        width: 100%;
+        border: #ddd solid 1px;
+        border-radius: 5px;
+        // padding: 1rem 0.75rem;
+
+        .select-search{
+            display: flex;
+            margin: 0.75rem;
+            justify-content: left;
+            align-items: center;
+            column-gap: 0;
+            padding: 5px;
+            -webkit-box-shadow: 0px 5px 11px -3px rgba(0,0,0,0.5);
+            -moz-box-shadow: 0px 5px 11px -3px rgba(0,0,0,0.5);
+            box-shadow: 0px 5px 11px -3px rgba(0,0,0,0.5);
+            button{
+                background: none;
+                border: none;
+                outline: none;
+                font-size: $font-md;
+                color: $orangish-yellow;
+                padding: 5px 7.5px 5px 5px;
+                cursor: pointer;
+            }
+
+            input{
+                font-size: $font-md;
+                border: none;
+                outline: none;
+                padding: 10px 15px 10px 10px;
+                width: 100%;
+            
+                &::placeholder{
+                    color: rgba($color: $text-black, $alpha: 0.65);
+                }
+            }
+        }
+
+        .select-opts{
+            margin: 1rem 0 0.25rem 0;
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+            max-height: 150px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            .select-opt{
+                font-size: $font-md;
+                padding: 0.75rem 1.25rem;
+                font-weight: $font-regular;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: rgba($color: #aaa, $alpha: 0.3);
+                }
+                
+                &.selected-opt{
+                    background-color: $orangish-yellow;
+                    color: $text-white;
+                }
+            }
+        }
+    }
+}

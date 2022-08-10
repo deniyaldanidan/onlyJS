@@ -1,0 +1,44 @@
+@import '../config';
+@import './customSelect';
+
+.search-box{
+    display: flex;
+    padding: 0.75rem 0.5rem;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 10px;
+
+    @media (max-width: 990px){
+        flex-direction: column;
+        width: 80%;
+        justify-content: left;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .search-btn{
+        background-color: $darkish-pink;
+        color: $text-white;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        padding: 1rem 3.25rem;
+        cursor: pointer;
+        
+        @media (max-width:990px){
+            width: 100%;
+        }
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 15px;
+        font-size: $font-md;
+
+        svg{
+            color: $orangish-yellow;
+        }
+    }
+}
