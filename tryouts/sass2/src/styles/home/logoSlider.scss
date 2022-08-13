@@ -1,0 +1,86 @@
+
+
+.logo-slider-cont{
+    margin: 50px auto 0px auto;
+    width: 100%;
+
+    .slick-slider{
+        pointer-events: none;
+    }
+
+    .slick-prev::before{
+        content: "";
+    }
+
+    .cust-prev-arrow{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        width: fit-content;
+        height: fit-content;
+        pointer-events: all;
+        
+        &>div{
+            background-color: $darkish-pink;
+            padding: 20px 25px;
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            transition: all 300ms ease-in-out;
+
+            &>span{
+                content: "";
+                display: block;
+                width: 0;
+                height: 0;
+                border-right: $orangish-yellow solid 6px;
+                border-top: transparent solid 6px;
+                border-bottom: transparent solid 6px;
+            }
+
+            &:hover{
+                background-color: rgba($color: #000000, $alpha: 0.45);
+                padding-left: 35px;
+            }
+        }
+    }
+
+    .slick-next::before{
+        content: "";
+    }
+
+    .cust-next-arrow{
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        width: fit-content;
+        height: fit-content;
+        pointer-events: all;
+        
+        &>div{
+            background-color: $darkish-pink;
+            padding: 20px 25px;
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            transition: all 300ms ease-in-out;
+
+            &>span{
+                content: "";
+                display: block;
+                width: 0;
+                height: 0;
+                border-left: $orangish-yellow solid 6px;
+                border-top: transparent solid 6px;
+                border-bottom: transparent solid 6px;
+            }
+
+            &:hover{
+                background-color: rgba($color: #000000, $alpha: 0.45);
+                padding-right: 35px;
+            }
+        }
+    }
+
+    .slick-list,.slick-slide{
+        pointer-events: none;
+    }
+}

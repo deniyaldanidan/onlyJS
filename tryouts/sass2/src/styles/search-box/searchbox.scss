@@ -10,7 +10,7 @@
     gap: 15px;
     border-radius: 10px;
 
-    @media (max-width: 990px){
+    @media (max-width: 1060px){
         flex-direction: column;
         width: 80%;
         justify-content: left;
@@ -27,7 +27,7 @@
         padding: 1rem 3.25rem;
         cursor: pointer;
         
-        @media (max-width:990px){
+        @media (max-width:1060px){
             width: 100%;
         }
 

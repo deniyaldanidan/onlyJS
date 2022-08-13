@@ -1,0 +1,35 @@
+@import './logoSlider.scss';
+
+.newest{
+    padding: 55px 0;
+    background-color: #fff;
+
+    .newest-header{
+        margin: auto;
+        width: fit-content;
+        text-align: center;
+        color: $darkish-blue;
+        
+        .newest-title{
+            font-size: $font-vixl;
+            font-weight: $font-medium;
+            
+            &:after{
+                display: block;
+                content: " ";
+                margin: auto;
+                margin-top: 1rem;
+                margin-bottom: 1.375rem;
+                width: 3.25rem;
+                height: 3px;
+                background-color: $orangish-yellow;
+            }
+        }
+
+        .newest-sub{
+            font-size: $font-xl;
+        }
+    }
+
+    
+}

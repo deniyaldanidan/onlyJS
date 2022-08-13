@@ -4,7 +4,7 @@
     position: relative;
     width: 30ch;
     
-    @media (max-width: 990px){
+    @media (max-width: 1060px){
         width: 100%;
     }
     
@@ -19,7 +19,7 @@
         border-right: rgba($color: $text-black, $alpha: 0.2) solid 1px;
         cursor: pointer;
 
-        @media (max-width:990px){
+        @media (max-width:1060px){
             border-right: none;
         }
 

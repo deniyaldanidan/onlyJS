@@ -1,3 +1,105 @@
 @import '../config';
 @import './hero.scss';
 @import './newest.scss';
+@import './join.scss';
+
+.add-investment-sec{
+    padding: 20px 0;
+}
+
+.pub-vacc-sec{
+    padding: 20px 0;
+    background-color: $lightish-blue;
+}
+
+.featured-posts{    
+    &.container-md{
+        padding: 3rem 1.5rem 5.2rem 1.5rem;
+    }
+    .featured-intro{
+        font-size: $font-vixl;
+        font-weight: $font-medium;
+        text-align: center;
+        color: $darkish-blue;
+        // margin-bottom: 120px;
+        
+        &::after{
+            display: block;
+            content: " ";
+            width: 50px;
+            height: 3.5px;
+            margin: auto;
+            margin-top: 15px;
+            background-color: $orangish-yellow;
+        }
+    }
+
+    .fposts-sec{
+        margin-top: 74px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        column-gap: 12px;
+
+        @media (max-width: 900px){
+            flex-wrap: wrap;
+            row-gap: 20px;
+        }
+
+        @media (max-width:630px){
+            flex-wrap: nowrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ad{
+            width: 39%;
+
+            @media (max-width:900px){
+                width: 45%;
+            }
+            @media (max-width:630px){
+                width: 85%;
+            }
+        }
+    }
+}
+
+.recent-posts{
+    background-color: $lightish-blue;
+    // Parallax
+    background-image: url('../../assets/bg-blog-hero.jpg');
+    min-height: fit-content;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    // Turn Off parallax in mobile-devices
+    @media (max-width: 700px){
+        background-attachment: scroll;
+    }
+
+    &>.container-md{
+        padding: 4rem 2rem;
+    }
+
+    .recent-p-intro{
+        font-size: $font-vixl;
+        font-weight: $font-medium;
+        text-align: center;
+        color: $darkish-blue;
+        margin-bottom: 80px;
+    }
+
+    .recent-p-posts{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        column-gap: 12px;
+        row-gap: 35px;
+    }
+}
