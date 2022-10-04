@@ -1,0 +1,135 @@
+@import '../../config';
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $sec-dark;
+    padding: 1rem 3.5rem;
+
+    .logo{
+        cursor: pointer;
+        font-size: $font-xl;
+        font-weight: $text-sbold;
+        letter-spacing: 1.75px;
+        word-spacing: 3px;
+    }
+    .menus{
+        display: flex;
+        column-gap: 2.5rem;
+        align-items: center;
+        .menu{
+            font-size: $font-lg;
+            font-weight: $text-med;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: color 200ms ease-in;
+            &:hover{
+                color: $sec-bright;
+            }
+        }
+    }
+}
+
+.footer{
+    background-color: $sec-dark;
+    padding: 3rem 3.5rem 1rem 3.5rem;
+
+    .footer-menus{
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+
+        .footer-menu{
+            color: $sec-bright;
+            font-size: $font-lg;
+            font-weight: $text-reg;
+            transition: color 200ms ease-in;
+
+            &:hover{
+                color: $pri-bright;
+            }
+        }
+    }
+
+    .primary{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 4rem;
+
+        .footer-logo-div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 0;
+            word-spacing: 4px;
+            
+            .footer-logo-main{
+                font-size: $font-giant2;
+                font-weight: $text-sbold;
+                line-height: $font-xl;
+                letter-spacing: 2.5px;
+            }
+
+            .footer-logo-sub{
+                font-size: $font-lg;
+                font-weight: $text-med;
+                letter-spacing: 2px;
+                color: $sec-bright;
+            }
+        }
+    }
+
+    .secondary{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        column-gap: 30px;
+        margin-bottom: 4rem;
+    }
+
+    .teritiary{
+        text-align: center;
+        font-size: $font-rg;
+        color: $sec-bright;
+    }
+
+    .socials{
+        display: flex;
+        flex-wrap: wrap;
+        width: 20%;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2rem;
+        row-gap: 1rem;
+        
+        .social-icon-wrapper{
+            border: $sec-bright 2px solid;
+            border-radius: 50%;
+            width: calc($font-xl + 1.25rem);
+            height: calc($font-xl + 1.25rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 150ms ease-in;
+            
+            .social-icon{
+                font-size: $font-xl;
+                color: $sec-bright;
+                transition: color 150ms ease-in;
+            }
+
+            &:hover{
+                border-color: $pri-bright;
+
+                .social-icon{
+                    color: $pri-bright;
+                }
+            }
+            
+        }
+    }
+}

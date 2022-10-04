@@ -1,0 +1,23 @@
+@import '../config';
+
+.svg-indicator{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    transform: rotate(-90deg);
+
+    .svg-indicator-track, .svg-indicator-indication{
+        stroke-dashoffset: 0;
+        fill: none;
+        stroke-width: 20%;
+    }
+
+    .svg-indicator-track{
+        stroke: white;
+        opacity: 0.4;
+    }
+
+    .svg-indicator-indication{
+        stroke: white;
+    }
+}

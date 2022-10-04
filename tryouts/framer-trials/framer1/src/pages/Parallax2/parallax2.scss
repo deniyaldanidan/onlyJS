@@ -1,0 +1,42 @@
+@import '../../config';
+
+.cards-container{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 30px auto;
+
+    .act-btn{
+        position: absolute;
+    }
+
+    .cards{
+        display: flex;
+        column-gap: 40px;
+        width: fit-content;
+        max-width: 80vw;
+        height: fit-content;
+        padding: 2rem 1rem;
+        background-color: white;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+        .card{
+            background-color: black;
+            min-width: 500px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+                font-size: 4rem;
+            }
+        }
+    }
+}

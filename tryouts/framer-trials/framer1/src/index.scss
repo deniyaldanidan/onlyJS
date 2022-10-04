@@ -1,0 +1,32 @@
+@import './config';
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: inherit;
+  font-size: $font-rg;
+  font-family: 'Eczar', serif;
+}
+
+body {
+  background-color: $pri-dark;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  color: $pri-bright;
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.showcase-section{
+  padding: 400px 0;
+  text-align: center;
+  font-size: $font-giant2;
+}

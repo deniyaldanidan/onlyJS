@@ -1,0 +1,38 @@
+
+.items-container{
+    width: 70%;
+    margin: 40px auto;
+    background-color: #aaa;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    border-radius: 10px;
+
+    .item{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 15px;
+        color: black;
+        span{
+            font-size: 1.5rem;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+        }
+
+        .handle{
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            *{
+                font-size: 1.75rem;
+            }
+        }
+
+    }
+}

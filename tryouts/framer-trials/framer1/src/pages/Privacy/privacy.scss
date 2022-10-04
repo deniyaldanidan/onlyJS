@@ -1,0 +1,42 @@
+@import '../../config';
+
+.privacy-policy{
+    padding: 4rem 8rem;
+    background-color: $sec-bright;
+    color: $pri-dark;
+
+    .privacy-title{
+        font-size: $font-giant2;
+        font-weight: $text-sbold;
+        text-align: center;
+        line-height: $font-xl;
+    }
+    .privacy-subtitle{
+        font-size: $font-xxl;
+        font-weight: $text-med;
+        text-align: center;
+    }
+
+    .privacy-section{
+        margin: 3.5rem 0;
+
+        .privacy-section-title{
+            margin-bottom: 1.5rem;
+            font-size: $font-xl;
+            font-weight: $text-sbold;
+            text-decoration: underline;
+        }
+
+        .privacy-section-para{
+            margin-bottom: 0.75rem;
+            font-size: $font-lg;
+            line-height: $font-xxl;
+            text-align: justify;
+            
+            strong{
+                font-size: inherit;
+                font-weight: $text-sbold;
+            }
+        }
+    }
+}
