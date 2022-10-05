@@ -1,6 +1,6 @@
 import React from 'react';
 import {MdDragIndicator} from 'react-icons/md';
-import {useDragControls, Reorder, useMotionValue, useTransform} from 'framer-motion';
+import {useDragControls, Reorder, useMotionValue, useTransform, motion, AnimatePresence} from 'framer-motion';
 
 const itemVariants = {
     hidden:{opacity:0},
@@ -14,8 +14,8 @@ const Item = ({value, containerRef, unComplete, complete, Delete})=>{
     const backgroundColor = useTransform(x, [-80, 0, 80], ["#f44", "#fff", "#8fa"])
     
     const dragHandler = (pos)=>{
-        if (pos<=-90) Delete(value.id)
-        if (pos>=90) complete(value.id)
+        if (pos<=-80) Delete(value.id)
+        if (pos>=80) complete(value.id)
     }
 
     return (
@@ -39,7 +39,17 @@ const Item = ({value, containerRef, unComplete, complete, Delete})=>{
             onDoubleClick={()=>unComplete(value.id)}
         >
             <span>
-                {value.data}
+                <span>
+                    {value.data}
+                </span>
+                <AnimatePresence mode="wait">
+                    {value.complete && <motion.div 
+                        className="complete-bar" 
+                        initial={{width:0}}
+                        animate={{width:"110%", transition: {duration:1, delay:0.5}}}
+                        exit={{width:0, transition:{duration:1, delay:0.25}}}
+                        ></motion.div>}
+                </AnimatePresence>
             </span>
             <div className="handle" onPointerDown={e=>dragControl.start(e)}><MdDragIndicator/></div>
         </Reorder.Item>
