@@ -13,6 +13,8 @@ import ViewCard from './pages/LayoutAni2/ViewCard';
 import LayoutAni2 from './pages/LayoutAni2';
 import Drag1 from './pages/Drag1';
 import Reorder1 from './pages/Reorder1';
+import Carousel1 from './pages/Carousel1';
+import Carousels1 from './pages/Carousels1';
 
 function App() {
   const location = useLocation()
@@ -38,6 +40,8 @@ function App() {
       </Route>
       <Route path="/drag1" element={<Drag1/>} />
       <Route path="/reorder1" element={<Reorder1/>} />
+      <Route path="/carousel1" element={<Carousel1/>} />
+      <Route path="/carousels1" element={<Carousels1/>} />
       
       <Route path='*' element={<MainShow>Error 404 not found</MainShow>}/>
     </Routes>

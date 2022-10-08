@@ -12,6 +12,8 @@ const Extras = () => {
       <CLink1 to="/layout2">Layout-2</CLink1>
       <CLink1 to="/drag1">Drag-1</CLink1>
       <CLink1 to="/reorder1">Reorder-1</CLink1>
+      <CLink1 to="/carousel1">Carousel1</CLink1>
+      <CLink1 to="/carousels1">Carousels1</CLink1>
     </Showcaser1>
   )
 }

@@ -25,6 +25,7 @@ const Item = ({value, containerRef, unComplete, complete, Delete})=>{
             initial="hidden"
             animate="visible"
             exit="exit"
+            transition={{layout: {duration:0.5}}}
             value={value} 
             className="item"
             drag
@@ -40,7 +41,7 @@ const Item = ({value, containerRef, unComplete, complete, Delete})=>{
         >
             <span>
                 <span>
-                    {value.data}
+                    {value.emoji} {value.name}
                 </span>
                 <AnimatePresence mode="wait">
                     {value.complete && <motion.div 

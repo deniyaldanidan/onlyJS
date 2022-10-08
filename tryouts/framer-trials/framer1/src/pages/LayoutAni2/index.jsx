@@ -7,7 +7,7 @@ import { MotionLink } from '../../components/CustLinks';
 
 const LayoutAni2 = ()=>{
     return (
-        <div className="cards-container">
+        <div className="layoutAni2 cards-container">
             <LayoutGroup id="card-group">
             {
                 cardData.map(card=>(
