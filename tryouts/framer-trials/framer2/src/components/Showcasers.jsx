@@ -13,6 +13,15 @@ export const CenteredShow1 = styled.div`
     gap: 40px;
 `
 
+export const FakeSection1 = styled(CenteredShow1)`
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: 2.5rem;
+    min-height: 110vh;
+    background-color: #1d272c;
+`
+
 export const CLink1 = styled(Link)`
     display: ${props => props.block ? "block" : "default"};
     font-size: ${props => props.fontSize ? props.fontSize : "inherit"};

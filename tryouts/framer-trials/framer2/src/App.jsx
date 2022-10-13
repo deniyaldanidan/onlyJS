@@ -1,7 +1,8 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import { CenteredShow1, CLink1 } from './components/Showcasers';
+import { CenteredShow1, CLink1, FakeSection1 } from './components/Showcasers';
 import Nav1 from './pages/Nav1';
+import Nav2 from './pages/Nav2';
 import Rough1 from './pages/Rough1';
 
 
@@ -24,7 +25,9 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/rough" element={<Rough1 />} />
       <Route path="/nav1" element={<Nav1/>} />
-      <Route path="/nav2" element={<></>} />
+      <Route path="/nav2" element={<Nav2/>}>
+        <Route index element={<FakeSection1>Time Sheet</FakeSection1>} />
+      </Route>
 
       <Route path="*" element={<CenteredShow1>404 Not Found</CenteredShow1>} />
     </Routes>
