@@ -1,0 +1,7 @@
+20221024 14:46:11	4a63fdb5-b0b5-45a9-9014-074e0e848a50	Error: Not allowed by CORS
+20221024 14:46:11	563dd788-a3a8-4a93-8c13-5266b95f77e3	Error: Not allowed by CORS
+20221024 14:50:41	a5dd952f-b77b-41b4-94b0-dbe50f595c8e	Error: Not allowed by CORS
+20221024 14:50:41	938daf52-ad81-4eee-ad46-b831337874be	Error: Not allowed by CORS
+20221024 17:02:48	ce33d35d-8177-4e0a-9c21-2987b80ee36a	Error: ENOENT: no such file or directory, stat '/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial1/basics2/routes/views/index.html'
+20221024 17:54:02	02f565c7-b7f9-4a33-8c1b-cd2539611c4f	Error: Cannot set headers after they are sent to the client
+20221024 17:55:00	ffec845a-4951-4fd9-8e07-cd1840fb3aa1	Error: Cannot set headers after they are sent to the client
