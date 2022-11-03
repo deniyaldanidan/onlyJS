@@ -5,3 +5,12 @@
 20221024 17:02:48	ce33d35d-8177-4e0a-9c21-2987b80ee36a	Error: ENOENT: no such file or directory, stat '/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial1/basics2/routes/views/index.html'
 20221024 17:54:02	02f565c7-b7f9-4a33-8c1b-cd2539611c4f	Error: Cannot set headers after they are sent to the client
 20221024 17:55:00	ffec845a-4951-4fd9-8e07-cd1840fb3aa1	Error: Cannot set headers after they are sent to the client
+20221028 17:25:22	f76a1e0d-e675-4fea-8e27-637096b183fb	ReferenceError: path is not defined
+20221028 17:26:30	0c16c7d1-3288-4296-831a-6fc90cefb66d	ReferenceError: path is not defined
+20221028 17:27:17	3021f561-84bf-4ce9-9798-da7660964088	ReferenceError: path is not defined
+20221028 17:27:52	9ab38087-0f9f-4e2a-acc3-53416e137432	ReferenceError: path is not defined
+20221030 11:48:08	f2928c7b-5476-4500-bbca-cbcf8ffa6b9a	TypeError: Cannot read properties of undefined (reading 'username')
+20221030 11:58:47	2c8737a9-ab7b-4356-ab3a-cf2bd6c1c453	TypeError: Cannot convert undefined or null to object
+20221101 16:47:22	c7892adc-9605-4a9c-a38c-1627f909ff7b	Error: Not allowed by CORS
+20221101 16:47:22	5905400b-998c-42df-83a3-3197aea32651	Error: Not allowed by CORS
+20221101 16:48:33	63d37b58-c768-4068-bff0-9b4aad713e80	Error: Not allowed by CORS

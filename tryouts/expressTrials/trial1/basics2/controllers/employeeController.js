@@ -1,60 +1,75 @@
-const {v4:uuid} = require('uuid');
-const data= {};
-data.employees = require('../data/employees.json');
+const Employee = require('../model/Employee');
 
-const getAllEmployees = (req, res)=>{
-    return res.status(200).json(data.employees)
+const getAllEmployees = async (req, res)=>{
+    const employees = await Employee.find({}).exec();
+    return res.status(200).json(employees)
 };
 
-const addEmployee = (req, res)=>{
+const addEmployee = async (req, res)=>{
     let {fname, lname} = req.body;
     if(fname && lname) {
-        let newEmployee = {
-            id: uuid(),
-            firstname: fname,
-            lastname: lname
+        try {
+            const newEmployee = await Employee.create({
+                firstname: fname,
+                lastname: lname
+            });
+            return res.status(201).json(newEmployee);
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
         }
-        data.employees.push(newEmployee);
-        return res.status(201).json(newEmployee);
     }
     return res.status(400).json({error: "missing a field"})
 }
 
-const updateEmployee = (req, res)=>{
+const updateEmployee = async (req, res)=>{
     let {id, fname, lname} = req.body;
     if (id){
-        let chosenEmp = data.employees.find(emp=>emp.id===id);
-        if (chosenEmp){
-            fname && (chosenEmp.firstname = fname);
-            lname && (chosenEmp.lastname = lname);
-            let empIndex = data.employees.findIndex(emp=>emp.id===id)
-            data.employees.splice(empIndex, 1, chosenEmp);
-            let modifiedEmp = data.employees.find(emp=>emp.id===id);
-            return res.status(201).json(modifiedEmp);
+        try {
+            let chosenEmp = await Employee.findById(id).exec();
+            if (chosenEmp){
+                fname && (chosenEmp.firstname = fname);
+                lname && (chosenEmp.lastname = lname);
+                await chosenEmp.save();
+                return res.status(201).json(chosenEmp);
+            }
+            return res.status(404).json({error:"Employee not found"})
+        } catch (error) {
+            console.log(error);
+            return res.status(400).json({error: "Invalid value"});
         }
-        return res.status(404).json({error:"Employee not found"})
     }
     return res.status(400).json({error:"Missing a field"});
 }
 
-const deleteEmployee = (req, res)=>{
+const deleteEmployee = async (req, res)=>{
     let {id} = req.body;
     if(id){
-        let empIndex = data.employees.findIndex(emp=>emp.id===id);
-        if(empIndex !== -1){
-            data.employees.splice(empIndex, 1);
-            return res.status(202).json({success: "Employee is successfully deleted"});
+        try {
+            let emp = await Employee.findById(id).exec();
+            if(emp){
+                await emp.delete();
+                return res.status(202).json({success: "Employee is successfully deleted"});
+            }
+            return res.status(400).json({error: "Employee is not found"});       
+        } catch (error) {
+            console.log(error);
+            return res.status(400).json({error: "Invalid values"});
         }
-        return res.status(400).json({error: "Employee is not found"});
     }
     return res.status(400).json({error: "Missing a field"})
 }
 
-const viewEmployee = (req, res)=>{
-    let empId = req.params.id;
-    let myEmp = data.employees.find(emp=>emp.id===empId);
-    if(myEmp){
-        return res.status(200).json(myEmp);
+const viewEmployee = async (req, res)=>{
+    let id = req.params.id;
+    try {
+        let myEmp = await Employee.findById(id).exec()
+        if(myEmp){
+            return res.status(200).json(myEmp);
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({error: "Invalid Id"});
     }
     return res.status(404).json({error: "Employee not found"});
 }

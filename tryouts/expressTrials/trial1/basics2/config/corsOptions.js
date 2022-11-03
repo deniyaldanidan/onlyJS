@@ -1,5 +1,4 @@
-//* allowed parties 
-const whitlelist = ['https://www.myDomain.com', 'http://localhost:3500'];
+const whitlelist = require('./whiteList');
 const corsOptions = {
     origin: (origin, callback)=>{
         if (whitlelist.indexOf(origin) !== -1 || !origin){
