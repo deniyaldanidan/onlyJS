@@ -1,0 +1,43 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+body{
+  background-color: #000;
+  color: #fff;
+  
+  .app{
+    margin: 40px auto;
+    border: solid 1px #777;
+    width: 90%;
+    max-width: 1000px;
+    min-height: 600px;
+    padding: 20px;
+
+    h1{
+      display: block;
+      width: fit-content;
+      margin: 10px auto;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .links{
+      display: flex;
+      justify-content: space-evenly;
+      margin: 30px auto;
+      a{
+        color: #aaa;
+        font-size: 1.25rem;
+
+        &:hover{
+          color: #fff;
+        }
+      }
+    }
+  }
+}
