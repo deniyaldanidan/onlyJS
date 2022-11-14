@@ -1,4 +1,4 @@
-14/11/2022, 10:08:20 Error: Throwing Trash
+14/11/2022, 10:37:20 Error: Throwing Trash
     at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/routes/home.js:5:11
     at Layer.handle [as handle_request] (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/express/lib/router/layer.js:95:5)
     at next (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/express/lib/router/route.js:144:13)
