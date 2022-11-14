@@ -3,18 +3,24 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const credentials = require('./middlewares/credentials');
-const logger = require('./middlewares/logger');
+const fs = require('fs');
 const errorHandler = require('./middlewares/errorHandler');
 const db_connect = require('./config/db_connect');
 const { default: mongoose } = require('mongoose');
-
+const {infoLog} = require('./config/loggers');
+const morgan = require('morgan');
+const path = require('path');
 const app = express()
 const PORT = process.env.PORT || 3500
 
 db_connect();
 
+//* http-logger
+morgan.token('myDate', ()=>new Date().toLocaleString('en-GB', {timeZone: "IST"}))
+app.use(morgan(':myDate :url :method :remote-addr :status'))
+app.use(morgan(':myDate :url :method :remote-addr :status', {stream: fs.createWriteStream(path.join(__dirname, 'logs', 'http.log'), {flags: "a"})}));
+
 //* Middlewares
-app.use(logger);
 app.use(cookieParser());
 app.use(credentials);
 app.use(cors(require('./config/corsOptions')))
@@ -32,5 +38,7 @@ app.use(errorHandler);
 
 mongoose.connection.once("open", ()=>{
     console.log("Connected to MongoDB");
-    app.listen(PORT, ()=>console.log(`Server running in port ${PORT}`));
-})
+    app.listen(PORT, ()=>{
+        infoLog(`Server running in port ${PORT}`)
+    });
+});
