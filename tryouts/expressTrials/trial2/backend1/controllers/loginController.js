@@ -12,14 +12,14 @@ const loginController = async (req, res, next) => {
         //* if match===true 
         const roles = Object.values(foundUser.roles).filter(Boolean);
         //* create accessToken
-        const accessToken = jwt.sign({ userInfo: { username: foundUser.username, roles } }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "5m" });
+        const accessToken = jwt.sign({ userInfo: { username: foundUser.username, roles } }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "12h" });
         //* create refresh-token
-        const refreshToken = jwt.sign({ username: user }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "10m" });
+        const refreshToken = jwt.sign({ username: user }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1d" });
         //* save refresh-token to the db
         const updatedUser = await User.findByIdAndUpdate(foundUser.id, {refreshToken}, {returnDocument:"after"})
         // console.log(updatedUser);
         //* send refresh-token to the client as http-only cookie.
-        res.cookie('jwt', updatedUser.refreshToken, { httpOnly: true, maxAge: 10 * 60 * 1000 });
+        res.cookie('jwt', updatedUser.refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
         return res.json({ success: `User '${updatedUser.username}' is successfully registered`, accessToken })
     } catch (error) {
         next(error);

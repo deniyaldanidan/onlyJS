@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,38 +6,238 @@
   list-style: none;
 }
 
-body{
+body {
   background-color: #000;
   color: #fff;
-  
-  .app{
+
+  .app {
     margin: 40px auto;
-    border: solid 1px #777;
-    width: 90%;
-    max-width: 1000px;
+    border: solid 1px #333;
+    width: 700px;
     min-height: 600px;
-    padding: 20px;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+  }
+}
 
-    h1{
-      display: block;
-      width: fit-content;
-      margin: 10px auto;
-      font-size: 2rem;
-      font-weight: 700;
+h1 {
+  display: block;
+  width: fit-content;
+  margin: 10px auto;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.links {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px auto;
+
+  .mylink {
+    color: #aaa;
+    font-size: 1.25rem;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
     }
+  }
+}
 
-    .links{
+.my-form {
+  background-color: #111;
+  border-radius: 20px;
+  padding: 40px;
+  min-height: inherit;
+
+  .main-error {
+    color: #f33;
+    font-size: 1rem;
+    width: fit-content;
+    margin: 5px auto;
+  }
+
+  .input-sec {
+    width: 600px;
+    margin: 25px auto;
+    position: relative;
+
+    label {
       display: flex;
-      justify-content: space-evenly;
-      margin: 30px auto;
-      a{
-        color: #aaa;
-        font-size: 1.25rem;
+      align-items: center;
+      column-gap: 6px;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 7px;
 
-        &:hover{
-          color: #fff;
+      .icon {
+        display: flex;
+        font-size: 1.1rem;
+        line-height: 1.1rem;
+        color: #4f8;
+
+        &.invalid {
+          color: #f33;
         }
       }
     }
+
+    textarea, input {
+      display: block;
+      width: 100%;
+      font-size: 1.25rem;
+      padding: 5px 7.5px;
+      outline: none;
+      border: none;
+      background-color: #222;
+      color: #fff;
+    }
+
+    textarea{
+      height: 210px;
+      overflow: -moz-scrollbars-none;
+      -ms-overflow-style: none;
+      padding: 7.5px 10px;
+      line-height: 1.5rem;
+      
+      &::-webkit-scrollbar{
+        display: none;
+      }
+    }
+
+    .input-error {
+      color: #f33;
+      font-size: 1.1rem;
+      margin: 3px;
+    }
+
+    .input-info {
+      position: absolute;
+      top: calc(100% + 5px);
+      z-index: 1;
+      padding: 10px 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+      background-color: #333;
+
+      span {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+
+        &::before {
+          content: "⋆";
+        }
+      }
+    }
+  }
+
+  button {
+    display: block;
+    margin: 50px auto 0 auto;
+    padding: 12px 50px;
+    font-size: 1.25rem;
+    background-color: #08e;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .info {
+    display: block;
+    margin: 30px auto 0 auto;
+    width: fit-content;
+    font-size: 1.25rem;
+    color: #aaa;
+
+    a {
+      color: #fff;
+      transition: all 250ms ease-in-out;
+
+      &:hover {
+        color: #aef;
+      }
+    }
+
+    &::before {
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: #444;
+      content: " ";
+      margin: 0 auto 30px auto;
+      animation: blinker 2s ease-in-out infinite both;
+    }
+  }
+}
+
+@keyframes blinker {
+  0% {
+    background-color: #444;
+  }
+
+  50% {
+    background-color: #fff;
+  }
+
+  100% {
+    background-color: #444;
+  }
+}
+
+.blog-card {
+  display: block;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  margin: 30px 0;
+  transform: translateY(0);
+  transition: all 250ms ease-in-out;
+
+  &.blog-click {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .blog-title {
+    font-size: 1.25rem;
+    line-height: 1.15rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .blog-excerpt {
+    font-size: 1.1rem;
+    line-height: 1rem;
+    text-align: center;
+  }
+
+  .blog-author {
+    font-size: 1rem;
+    line-height: 1rem;
+    text-align: center;
+  }
+
+  .blog-body {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    margin-top: 10px;
+    text-indent: 15px;
   }
 }

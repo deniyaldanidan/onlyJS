@@ -13,7 +13,7 @@ const createBlog = async(req, res, next)=>{
     const {title, excerpt, body, author} = req.body;
     if (!title || !excerpt || !body || !author) return res.status(404).json({error: "some fields are missing"});
     try {
-        if (await MiniBlog.findOne({title}).exec()) return res.json({error: "title already taken"});
+        if (await MiniBlog.findOne({title}).exec()) return res.status(409).json({errors: {title: "title already taken"}});
         const newMBlog = await MiniBlog.create({title, excerpt, body, author})
         console.log(newMBlog);
         return res.json({newMBlog}) 
@@ -28,12 +28,15 @@ const updateBlog = async(req, res, next)=>{
     try {
         const mblog = await MiniBlog.findById(id).exec();
         if (!mblog) return res.status(404).json({error: "requested blog not found"});
-        title && (mblog.title = title)
-        excerpt && (mblog.excerpt = excerpt)
+        title && (mblog.title = title);
+        excerpt && (mblog.excerpt = excerpt);
         body && (mblog.body = body);
         await mblog.save();
         return res.json({success: `Blog ${mblog.title} is updated`});
     } catch (error) {
+        if (error.name==="MongoServerError" && error.code===11000){
+            return res.status(409).json({errors: {title: "Title already taken"}});
+        }
         return next(error);
     }
 

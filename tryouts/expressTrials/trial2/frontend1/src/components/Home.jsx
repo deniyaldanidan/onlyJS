@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import api from "../api/api";
+import {basicApi} from "../api/api";
+import useAuth from "../context/AuthContext";
+import useLogout from "../hooks/useLogout";
 
 const Home = () => {
 
     const [msg, setMsg] = useState("Hello");
+    const {auth} = useAuth();
+    const handleLogout = useLogout();
 
     useEffect(()=>{
         const requestServer = async()=>{
             try {
-                const result = await api.get("/");
+                const result = await basicApi.get("/");
                 // console.log(result);
                 setMsg(result.data.message)
             } catch (error) {
@@ -25,9 +29,7 @@ const Home = () => {
         <div>
             <h1>{msg}</h1>
             <div className="links">
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-                <Link to="/links">Links</Link>
+                {auth?.accessToken ? (<><Link to="/links" className="mylink" >Links</Link><button onClick={handleLogout} className="mylink" >Logout</button></>) : (<><Link to="/login" className="mylink" >Login</Link><Link to="/register" className="mylink" >Register</Link></>)}
             </div>
         </div>
     )

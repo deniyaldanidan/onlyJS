@@ -9,3 +9,25 @@
     at next (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/express/lib/router/index.js:280:10)
     at Function.handle (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/express/lib/router/index.js:175:3)
     at router (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/express/lib/router/index.js:47:12)
+21/11/2022, 12:20:40 MongoServerError: E11000 duplicate key error collection: 635e74290654f05e4c60eca5_SimpleBackend1.miniblogs index: title_1 dup key: { title: "Hello Reader" }
+    at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/operations/update.js:72:33
+    at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/connection_pool.js:308:25
+    at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/sdam/server.js:213:17
+    at handleOperationResult (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/sdam/server.js:329:20)
+    at Connection.onMessage (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/connection.js:219:9)
+    at MessageStream.<anonymous> (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/connection.js:60:60)
+    at MessageStream.emit (node:events:513:28)
+    at processIncomingData (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/message_stream.js:132:20)
+    at MessageStream._write (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/message_stream.js:33:9)
+    at writeOrBuffer (node:internal/streams/writable:392:12)
+21/11/2022, 13:24:10 MongoServerError: E11000 duplicate key error collection: 635e74290654f05e4c60eca5_SimpleBackend1.miniblogs index: title_1 dup key: { title: "Intro" }
+    at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/operations/update.js:72:33
+    at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/connection_pool.js:308:25
+    at /home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/sdam/server.js:213:17
+    at handleOperationResult (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/sdam/server.js:329:20)
+    at Connection.onMessage (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/connection.js:219:9)
+    at MessageStream.<anonymous> (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/connection.js:60:60)
+    at MessageStream.emit (node:events:513:28)
+    at processIncomingData (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/message_stream.js:132:20)
+    at MessageStream._write (/home/davisj/Documents/gits/onlyJS/tryouts/expressTrials/trial2/backend1/node_modules/mongodb/lib/cmap/message_stream.js:33:9)
+    at writeOrBuffer (node:internal/streams/writable:392:12)
