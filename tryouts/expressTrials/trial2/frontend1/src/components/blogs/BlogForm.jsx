@@ -1,48 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {MdClose, MdCheck} from 'react-icons/md';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputSec from '../InputSec';
 
-const BlogForm = ({initialTitle="", initialExcerpt="", initialBody="", edit=false, successLink, cancelLink, requestFunc}) => {
-    const titleRef = useRef();
+const BlogForm = ({ initialTitle = "", initialExcerpt = "", initialBody = "", edit = false, successLink, cancelLink, requestFunc }) => {
     const navigate = useNavigate();
 
     const [title, setTitle] = useState(initialTitle);
     const [validTitle, setValidTitle] = useState(false);
     const [titleErr, setTitleErr] = useState("");
-    const [titleFocus, setTitleFocus] = useState(false);
 
     const [excerpt, setExcerpt] = useState(initialExcerpt);
     const [validExcerpt, setValidExcerpt] = useState(false);
     const [excerptErr, setExcerptErr] = useState("");
-    const [excerptFocus, setExcerptFocus] = useState(false);
 
     const [body, setBody] = useState(initialBody);
     const [validBody, setValidBody] = useState(false);
     const [bodyErr, setBodyErr] = useState("");
-    const [bodyFocus, setBodyFocus] = useState(false)
 
     const [author, setAuthor] = useState("");
     const [authorErr, setAuthorErr] = useState("");
 
     const [err, setErr] = useState("");
 
-    useEffect(()=>{
-        titleRef.current.focus()
-    }, []);
-
-    useEffect(()=>{
-        setValidTitle(title.length>=5);
+    useEffect(() => {
+        setValidTitle(title.length >= 5);
     }, [title]);
 
-    useEffect(()=>{
-        setValidExcerpt(excerpt.length>=5);
+    useEffect(() => {
+        setValidExcerpt(excerpt.length >= 5);
     }, [excerpt]);
 
-    useEffect(()=>{
-        setValidBody(body.length>=30);
+    useEffect(() => {
+        setValidBody(body.length >= 30);
     }, [body])
 
-    const handleSubmit = async (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         setErr("");
@@ -51,15 +43,15 @@ const BlogForm = ({initialTitle="", initialExcerpt="", initialBody="", edit=fals
         setBodyErr("");
         setAuthorErr("");
 
-        if (!edit){
+        if (!edit) {
             if (!validTitle || !validBody || !validExcerpt || !author) return setErr("Fill out all fields");
         }
-        if (edit){
+        if (edit) {
             if (!validTitle || !validBody || !validExcerpt) return setErr("Fill out all fields");
         }
 
         try {
-            const result  = await requestFunc({title, excerpt, author, body})
+            const result = await requestFunc({ title, excerpt, author, body })
             console.log(result);
             setTitle("");
             setBody("");
@@ -68,8 +60,8 @@ const BlogForm = ({initialTitle="", initialExcerpt="", initialBody="", edit=fals
             return navigate(successLink);
         } catch (error) {
             const errStatus = error?.response?.status;
-            if (errStatus===404 || errStatus===400) return setErr(error?.response?.data.error)
-            if (errStatus===409){
+            if (errStatus === 404 || errStatus === 400) return setErr(error?.response?.data.error)
+            if (errStatus === 409) {
                 const errorsObj = error?.response?.data?.errors;
                 errorsObj?.title && setTitleErr(errorsObj?.title);
                 errorsObj?.excerpt && setExcerptErr(errorsObj?.excerpt);
@@ -81,7 +73,7 @@ const BlogForm = ({initialTitle="", initialExcerpt="", initialBody="", edit=fals
         }
     }
 
-    const cancelHandler = ()=>{
+    const cancelHandler = () => {
         setTitle("");
         setBody("");
         setExcerpt("");
@@ -91,36 +83,53 @@ const BlogForm = ({initialTitle="", initialExcerpt="", initialBody="", edit=fals
 
     return (
         <div className="my-form">
-            <h1>{!edit ? "Create" : "Edit" } Blog</h1>
+            <h1>{!edit ? "Create" : "Edit"} Blog</h1>
             <div className="main-error">{err}</div>
             <form onSubmit={handleSubmit}>
-                <div className="input-sec">
-                    <label htmlFor="title">Title {titleFocus ? (validTitle ? <MdCheck className='icon' /> : <MdClose className='icon invalid' /> ) : ""}</label>
-                    <input ref={titleRef} required type="text" id='title' value={title} onChange={e=>setTitle(e.target.value)} onFocus={()=>setTitleFocus(true)} onBlur={()=>setTitleFocus(false)} />
-                    <div className="input-error">{titleErr}</div>
-                </div>
-                <div className="input-sec">
-                    <label htmlFor="excerpt">Excerpt {excerptFocus ? (validExcerpt ? <MdCheck className='icon' /> : <MdClose className='icon invalid' /> ) : ""}</label>
-                    <input type="text" id='excerpt' required value={excerpt} onChange={e=>setExcerpt(e.target.value)} onFocus={()=>setExcerptFocus(true)} onBlur={()=>setExcerptFocus(false)} />
-                    <div className="input-error">{excerptErr}</div>
-                </div>
-                { !edit ? (
-                <div className="input-sec">
-                    <label htmlFor="author">Author</label>
-                    <input required type="text" id='author' value={author} onChange={e=>setAuthor(e.target.value)} />
-                    <div className="input-error">{authorErr}</div>
-                </div> ) : "" }
-                <div className="input-sec">
-                    <label htmlFor="body">Body {bodyFocus ? (validBody ? <MdCheck className='icon' /> : <MdClose className='icon invalid' /> ) : ""}</label>
-                    <textarea id="text" 
-                        value={body} 
-                        required
-                        onChange={e=>setBody(e.target.value)} 
-                        onFocus={()=>setBodyFocus(true)} 
-                        onBlur={()=>setBodyFocus(false)} 
-                    ></textarea>
-                    <div className="input-error">{bodyErr}</div>
-                </div>
+                <InputSec
+                    inputId="title"
+                    value={title}
+                    setValue={setTitle}
+                    valid={validTitle}
+                    focusOnStart={true}
+                    err={titleErr}
+                    label="Title"
+                    placeholder="Title of the blog"
+                    hasInfo={false}
+                />
+                <InputSec
+                    inputId="excerpt"
+                    value={excerpt}
+                    setValue={setExcerpt}
+                    valid={validExcerpt}
+                    err={excerptErr}
+                    label="Excerpt"
+                    placeholder="Excerpt of the blog"
+                    hasInfo={false}
+                />
+                {!edit ? (
+                    <InputSec
+                        inputId="author"
+                        value={author}
+                        setValue={setAuthor}
+                        err={authorErr}
+                        label="Author"
+                        placeholder="Name of the author"
+                        hasInfo={false}
+                        hasValidIcon={false}
+                    />
+                ) : ""}
+                <InputSec
+                    inputId="body"
+                    value={body}
+                    setValue={setBody}
+                    valid={validBody}
+                    err={bodyErr}
+                    textArea={true}
+                    label="Body"
+                    placeholder="Write Content of the blog here"
+                    hasInfo={false}
+                />
                 <button type='submit'>Submit</button>
                 <button type='button' onClick={cancelHandler}>Cancel</button>
             </form>

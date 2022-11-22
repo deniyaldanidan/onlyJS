@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 import { basicApi } from '../api/api';
 import jwt_decode from 'jwt-decode';
 import useAuth from '../context/AuthContext';
+import InputSec from './InputSec';
 
 const Login = () => {
 
@@ -10,17 +11,12 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
-  const userRef = useRef();
   const {setAuth} = useAuth();
   
   const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
 
   const [err, setErr] = useState("");
-
-  useEffect(()=>{
-    userRef.current.focus();
-  }, []);
 
   useEffect(()=>{
     setErr("");
@@ -58,14 +54,28 @@ const Login = () => {
       <h1>Login</h1>
       <p className="main-error">{err}</p>
       <form onSubmit={submitHandler}>
-        <div className="input-sec">
-          <label htmlFor="username">Username</label>
-          <input ref={userRef} type="text" id='username' required placeholder='username' value={username} onChange={e=>setUsername(e.target.value)} />
-        </div>
-        <div className="input-sec">
-          <label htmlFor="password">Password</label>
-          <input type="password" id='password' required placeholder='password' value={pwd} onChange={e=>setPwd(e.target.value)} />
-        </div>
+        <InputSec
+          inputId="username"
+          value={username}
+          setValue={setUsername}
+          focusOnStart={true}
+          label="Username"
+          placeholder="Username"
+          hasError={false}
+          hasInfo={false}
+          hasValidIcon={false}
+        />
+        <InputSec
+          inputId="password"
+          value={pwd}
+          setValue={setPwd}
+          inputType="password"
+          label="Password"
+          placeholder="Password"
+          hasError={false}
+          hasInfo={false}
+          hasValidIcon={false}
+        />
         <button type='submit'>Login</button>
       </form>
       <div className="info">
