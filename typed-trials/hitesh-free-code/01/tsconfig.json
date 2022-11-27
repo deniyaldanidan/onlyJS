@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true
+    },
+    "files": [
+        "intro.ts",
+        "fns.ts",
+        "objects.ts",
+        "arrays.ts",
+        "mytuples.ts"
+    ]
+}
