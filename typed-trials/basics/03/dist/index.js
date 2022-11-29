@@ -1,0 +1,11 @@
+console.log("Script is Active");
+var input = document.getElementById("uname");
+console.log(input.value);
+var inputEl0 = input;
+console.log(inputEl0.value);
+var inputEl1 = document.getElementById("uname");
+console.log(inputEl1);
+console.log(inputEl1.value);
+var inputEl2 = document.getElementById("uname");
+console.log(inputEl2);
+console.log(inputEl2.value);

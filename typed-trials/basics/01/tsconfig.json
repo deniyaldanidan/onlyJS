@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "outDir": "./dist"
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts"],
+    /*
+    //* exclusively providing names of the files
+    "files": [
+        "./src/intro.ts",
+        "./src/fns.ts",
+        "./src/objects.ts",
+        "./src/arrays.ts",
+        "./src/tuples&enums.ts"
+    ]
+    */
+}
