@@ -27,6 +27,11 @@ const color1: RGBA = [255, 200, 12];
 const color2: RGBA = [200, 102, 0, 0.9];
 const color3: RGBA = [0, 0, 120, "20%"];
 
+//* tuples with REST Elements
+type StringNumberBooleans = [string, number, ...boolean[]];
+type StringBooleansNumber = [string, ...boolean[], number];
+type BooleansStringNumber = [...boolean[], string, number];
+
 enum Month {
     Jan,
     Feb,
