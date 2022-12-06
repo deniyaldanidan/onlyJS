@@ -29,6 +29,7 @@ export const TaskContextProvider:ProviderType = ({children})=>{
 
     const deleteTask:deleteTask = (id)=>{
         setTasks(prev=>prev.filter(tk=>tk.id!==id))
+        console.log(`Task ${id} is deleted`)
         return "Task is deleted"
     }
 

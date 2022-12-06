@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Add from "./Pages/Add";
+import Edit from "./Pages/Edit";
 import Home from "./Pages/Home";
 // import ShowMsg from "./components/ShowMsg";
 import TaskApp from "./Pages/TaskApp";
@@ -15,7 +16,7 @@ const App: React.FC = () => {
         <Route path="/" element={<TaskApp />}>
           <Route index element={<Home />} />
           <Route path="/add" element={<Add />} />
-
+          <Route path="/edit" element={<Edit/>} />
           
           <Route path="*" element={<h1>Sorry, Page Not Found</h1>} />
         </Route>

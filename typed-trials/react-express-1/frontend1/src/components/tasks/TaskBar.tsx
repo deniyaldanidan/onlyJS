@@ -5,13 +5,15 @@ import { AiFillStar, AiOutlineStar, AiFillEdit, AiFillDelete, AiOutlineFileText,
 import { useRef, useState } from "react";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import useTasks from "../../context/TaskContext";
+import { useNavigate } from "react-router-dom";
 
 type TaskBarProps = {
     task: Task
 }
 
 const TaskBar = ({ task }: TaskBarProps) => {
-    const {toggTaskImp} = useTasks()
+    const {toggTaskImp, deleteTask} = useTasks();
+    const navigate = useNavigate();
 
     const noteRef = useRef<HTMLDivElement | null>(null);
     const menuRef = useRef<HTMLDivElement | null>(null);
@@ -38,6 +40,14 @@ const TaskBar = ({ task }: TaskBarProps) => {
         toggTaskImp(task.id)
     }
 
+    const editBtnHandler = ()=>{
+        navigate("/edit", {state: {task_id: task.id}, replace:true})
+    }
+
+    const deleteBtnHandler = ()=>{
+        deleteTask(task.id);
+    }
+
 
     return (
         <div className={task.important ? "task-bar highlight" : "task-bar"}>
@@ -51,8 +61,8 @@ const TaskBar = ({ task }: TaskBarProps) => {
                         <div className="options-icon" onClick={optionsClickHandler}><SlOptions /></div>
                         {optMenuActive ? (
                             <div className="opt-menus">
-                                <div className="opt-menu"><AiFillEdit/> <span>Edit</span></div>
-                                <div className="opt-menu"><AiFillDelete/> <span>Delete</span></div>
+                                <div className="opt-menu" onClick={editBtnHandler} ><AiFillEdit/> <span>Edit</span></div>
+                                <div className="opt-menu" onClick={deleteBtnHandler} ><AiFillDelete/> <span>Delete</span></div>
                             </div>
                         ) : ""}
                     </div>
