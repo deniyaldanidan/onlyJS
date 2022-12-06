@@ -15,7 +15,7 @@ const corsOptions = {
             }
         }
         if (typeof origin === "undefined") {
-            return callback(null, true); //* During Dev allow, During Prouction produce an error like above
+            return callback(null, true);
         }
     },
     optionsSuccessStatus: 200,
