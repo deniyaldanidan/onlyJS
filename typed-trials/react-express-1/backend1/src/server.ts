@@ -9,11 +9,17 @@ import corsOptions from './config/corsOptions';
 import morgan from 'morgan';
 import fs from 'fs';
 import path from 'path';
+import connect_DB from './config/connect_DB';
+import mongoose from 'mongoose';
+import taskRouter from './routes/task';
 
 dotenv.config()
 
 const app:Express = express();
 const PORT:string = process.env.PORT || "3500";
+
+//* Connecting to Database
+connect_DB();
 
 //* http-logger
 morgan.token('myDate', ()=>new Date().toLocaleString('en-GB', {timeZone: "IST"}))
@@ -28,12 +34,17 @@ app.use(json());
 
 //*Routers
 app.use("/", HomeRouter)
+app.use("/tasks", taskRouter);
 
 //*404 Handler
 app.use("*", handle404);
 //* Error Handler
 app.use(errorHandler) 
 
-app.listen(PORT, ()=>{
-    console.log(`Server listening on Port: ${PORT}`)
+
+mongoose.connection.once("open", ()=>{
+    console.log("Connected to Database")
+    app.listen(PORT, ()=>{
+        console.log(`Server listening on Port: ${PORT}`)
+    })
 })

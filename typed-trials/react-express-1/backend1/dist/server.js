@@ -37,9 +37,13 @@ const corsOptions_1 = __importDefault(require("./config/corsOptions"));
 const morgan_1 = __importDefault(require("morgan"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const connect_DB_1 = __importDefault(require("./config/connect_DB"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const task_1 = __importDefault(require("./routes/task"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || "3500";
+(0, connect_DB_1.default)();
 morgan_1.default.token('myDate', () => new Date().toLocaleString('en-GB', { timeZone: "IST" }));
 app.use((0, morgan_1.default)(':myDate :url :method :remote-addr :status'));
 app.use((0, morgan_1.default)(':myDate :url :method :remote-addr :status', { stream: fs_1.default.createWriteStream(path_1.default.join(__dirname, "..", 'logs', 'http.log'), { flags: "a" }) }));
@@ -48,8 +52,12 @@ app.use((0, cors_1.default)(corsOptions_1.default));
 app.use((0, express_1.urlencoded)({ extended: true }));
 app.use((0, express_1.json)());
 app.use("/", home_1.default);
+app.use("/tasks", task_1.default);
 app.use("*", Handle404_1.default);
 app.use(errorHandler_1.default);
-app.listen(PORT, () => {
-    console.log(`Server listening on Port: ${PORT}`);
+mongoose_1.default.connection.once("open", () => {
+    console.log("Connected to Database");
+    app.listen(PORT, () => {
+        console.log(`Server listening on Port: ${PORT}`);
+    });
 });
