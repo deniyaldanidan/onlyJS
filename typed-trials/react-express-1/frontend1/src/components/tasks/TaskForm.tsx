@@ -17,7 +17,7 @@ type TaskFormProps = {
     initialTags?: Tags,
 }
 
-const TaskForm = ({ taskId = "", edit = false, initialName, initialImp, initialDue, initialNote, initialTags}: TaskFormProps): JSX.Element => {
+const TaskForm = ({ taskId = "", edit = false, initialName, initialImp, initialDue, initialNote, initialTags }: TaskFormProps): JSX.Element => {
 
     const { editTask, addTask } = useTasks()
     const navigate = useNavigate();
@@ -36,8 +36,8 @@ const TaskForm = ({ taskId = "", edit = false, initialName, initialImp, initialD
 
     const [err, setErr] = useState<string>("")
 
-    useEffect(()=>{
-        if (edit){
+    useEffect(() => {
+        if (edit) {
             initialName?.length && setName(initialName);
             typeof initialImp === "boolean" && setImportant(initialImp);
             initialDue?.length && setDue(initialDue);
@@ -84,7 +84,7 @@ const TaskForm = ({ taskId = "", edit = false, initialName, initialImp, initialD
         setErr("")
     }, [name, important, note, tags, due])
 
-    const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
+    const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
         setErr("")
         if (!name) {
@@ -92,24 +92,20 @@ const TaskForm = ({ taskId = "", edit = false, initialName, initialImp, initialD
             return;
         }
 
-        if (edit) {
-            if (taskId?.length) {
-                editTask(taskId, {
-                    name,
-                    important,
-                    due,
-                    note,
-                    tags
-                })
+        try {
+            if (edit) {
+                if (taskId?.length) {
+                    const status = await editTask(taskId, { name, important, due, note, tags })
+                    console.log(status);
+                }
+            } else if (!edit) {
+                const status = await addTask({ name, important, due, note, tags });
+                console.log(status);
             }
-        } else if (!edit) {
-            addTask({
-                name,
-                important,
-                due,
-                note,
-                tags
-            })
+        } catch (error) {
+            const err = error as Error;
+            console.log(error);
+            return setErr(err.message)
         }
         navigate("/");
         console.log("Submitted")

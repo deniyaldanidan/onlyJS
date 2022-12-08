@@ -33,12 +33,23 @@ export type ContextTasks = {
     toggTaskImp: toggTaskImp
 }
 
-export type findTask = (id: string) => Task | undefined;
+// export type TaskJson = {
+//     task : Task
+// }
 
-export type addTask = (data: TaskData) => string
+// export type TaskJsonWithSuccess = {
+//     task : Task,
+//     success: boolean
+// }
 
-export type editTask = (id:string, data:TaskData)=>string
+export type findTask = (id: string, controller?: AbortController) => Promise<Task | undefined>;
 
-export type deleteTask = (id:string)=>string
+export type addTask = (data: TaskData) => Promise<string>
 
-export type toggTaskImp = (id:string)=>void
+export type editTask = (id:string, data:TaskData)=>Promise<string>;
+
+export type deleteTask = (id:string)=>Promise<void>
+
+export type toggTaskImp = (id:string)=>Promise<void>
+
+export type fetchAllTasks = (controller?:AbortController)=>Promise<Tasks>

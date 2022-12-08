@@ -4,34 +4,52 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import TaskForm from '../components/tasks/TaskForm';
 import { Task } from '../types/Tasks';
 
-const initialData:Task = {
+const initialData: Task = {
     id: "",
     name: "",
     important: false,
-    due : "",
+    due: "",
     note: "",
     tags: []
 }
 
 const Edit = (): JSX.Element => {
-    const {findTask} = useTasks()
+    const { findTask } = useTasks()
     const navigate = useNavigate();
     const location = useLocation();
     const [tasKData, setTaskData] = useState<Task>(initialData)
 
-    useEffect(()=>{
-        if (!location.state?.task_id){
+    useEffect(() => {
+        if (!location.state?.task_id) {
             navigate("/");
             return;
         }
-        let _id:string = location.state.task_id;
-        const myTask = findTask(_id);
-        if(!myTask){
-            navigate("/");
-            return;
+        let _id: string = location.state.task_id;
+        const controller = new AbortController();
+        
+        const getTask: () => Promise<void> = async () => {
+            try {
+                const myTask = await findTask(_id, controller);
+                if (!myTask) {
+                    navigate("/");
+                    return;
+                }
+                setTaskData(myTask)
+            } catch (error) {
+                const err = error as Error;
+                console.log(error);
+                if (err.message==="canceled" || err.name === "CanceledError"){
+                    return;
+                } 
+                navigate("/")
+            }
         }
-        setTaskData(prev=>({...prev, ...myTask}))
 
+        getTask();
+
+        return ()=>{
+            controller.abort()
+        }
     }, [location, navigate, findTask])
 
     return <TaskForm taskId={tasKData.id} edit={true} initialName={tasKData.name} initialImp={tasKData.important} initialDue={tasKData.due} initialNote={tasKData.note} initialTags={tasKData.tags} />

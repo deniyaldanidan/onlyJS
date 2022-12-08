@@ -61,7 +61,7 @@ const updateOne = (req, res, next) => __awaiter(void 0, void 0, void 0, function
         (typeof note === "string" && (note === null || note === void 0 ? void 0 : note.length)) && (myTask.note = note);
         (Array.isArray(tags) && (tags === null || tags === void 0 ? void 0 : tags.length)) && (myTask.tags = tags);
         const updTask = yield myTask.save({ validateBeforeSave: true, });
-        return res.json({ updatedTask: updTask, success: true });
+        return res.json({ task: updTask, success: true });
     }
     catch (error) {
         next(error);
@@ -70,17 +70,17 @@ const updateOne = (req, res, next) => __awaiter(void 0, void 0, void 0, function
 exports.updateOne = updateOne;
 const toggImp = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id, important } = req.body;
-        if (!id || typeof important !== "boolean") {
+        const { id } = req.body;
+        if (!id) {
             return res.status(400).json({ error: "Fields are missing" });
         }
         const myTask = yield Task_1.default.findById(id).exec();
         if (!myTask) {
             return res.status(400).json({ error: "Task doesn't exist" });
         }
-        myTask.important = important;
+        myTask.important = !myTask.important;
         const result = yield myTask.save({ validateBeforeSave: true });
-        return res.json({ toggledTask: result, success: true });
+        return res.json({ task: result, success: true });
     }
     catch (error) {
         next(error);
@@ -109,10 +109,7 @@ const findOne = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const id = req.params.id;
         const myTask = yield Task_1.default.findById(id).exec();
-        if (!myTask) {
-            return res.status(404).json({ error: "Requested Task doesn't exist" });
-        }
-        return res.json({ task: myTask });
+        return res.json(myTask);
     }
     catch (error) {
         next(error);

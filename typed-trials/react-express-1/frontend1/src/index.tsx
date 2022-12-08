@@ -11,11 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
-      <TaskContextProvider>
+    <TaskContextProvider>
+      <Router>
         <App />
-      </TaskContextProvider>
-    </Router>
+      </Router>
+    </TaskContextProvider>
   </React.StrictMode>
 );
 

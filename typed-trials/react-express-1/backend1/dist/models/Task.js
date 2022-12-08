@@ -34,6 +34,6 @@ const TaskSchema = new mongoose_1.Schema({
         },
         required: false
     }
-});
+}, { id: true, toJSON: { virtuals: true, versionKey: false }, toObject: { virtuals: true, versionKey: false } });
 const Task = (0, mongoose_1.model)("Task", TaskSchema);
 exports.default = Task;

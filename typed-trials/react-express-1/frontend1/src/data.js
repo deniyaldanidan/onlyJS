@@ -29,6 +29,3 @@ export const myTasks = [
         tags: ["Entertainment", "Hobby"]
     }
 ]
-
-// export const tags = ["Hobby", "Work", "Chores", "RelationShip", "Family", "School", "Entertainment"];
-// export const dues = ["Today", "Yesterday", "Tomorrow", "This Week", "This Weekend", "Next Week", "This Month"];

@@ -34,7 +34,7 @@ const TaskSchema = new Schema({
         },
         required: false
     }
-})
+}, {id:true, toJSON: {virtuals: true, versionKey: false}, toObject: {virtuals: true, versionKey: false}})
 
 const Task = model("Task", TaskSchema);
 
