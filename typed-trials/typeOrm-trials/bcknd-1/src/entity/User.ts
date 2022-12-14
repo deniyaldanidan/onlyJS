@@ -1,4 +1,5 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Blog } from './Blog';
 import { Profile } from './Profile';
 
 @Entity()
@@ -28,6 +29,10 @@ export class User{
 
     @OneToOne(()=>Profile, (profile)=>profile.user, {eager: true})
     profile: Profile
+
+    @OneToMany(()=>Blog, (blog)=>blog.author)
+    blogs: Array<Blog>
 }
 
 // User hasOne Profile
+// User hasMany Blogs

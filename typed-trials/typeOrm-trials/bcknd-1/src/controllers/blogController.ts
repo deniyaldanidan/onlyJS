@@ -2,6 +2,7 @@ import { ErrorRequestHandler, RequestHandler } from "express";
 import { EntityNotFoundError, QueryFailedError, TypeORMError } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Blog } from "../entity/Blog";
+import { User } from "../entity/User";
 
 const BlogRepository = AppDataSource.getRepository(Blog);
 
@@ -33,11 +34,14 @@ export const createBlog:RequestHandler = async(req, res, next)=>{
         if (typeof title !== "string" || typeof excerpt !== "string" || typeof content !== "string" || typeof author !== "string"){
             return res.status(409).json({error: "Invalid Values"})
         }
+
+        const Users = await AppDataSource.manager.find(User);
+
         const newBlog = BlogRepository.create({
             title,
             excerpt,
             content,
-            author
+            author: Users[0]
         })
         await BlogRepository.save(newBlog);
         return res.json(newBlog);

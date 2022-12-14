@@ -1,4 +1,6 @@
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import { Category } from './Category';
+import { User } from './User';
 
 @Entity()
 export class Blog{
@@ -27,12 +29,18 @@ export class Blog{
     // @Column("da")
     // published_on: string
     
-    @Column({
-        type: "varchar",
-        length: 50,
-        nullable: false
+    @ManyToOne(()=>User, (user)=>user.blogs, {
+        onDelete: "CASCADE",
+        nullable: false,
+        eager: true
     })
-    author: string
+    author: User
+
+    @ManyToMany(()=>Category, (category)=>category.blogs, {
+        eager: true
+    })
+    categories: Array<Category>
+
 
     @Column({
         type: "boolean",
@@ -50,3 +58,5 @@ export class Blog{
     })
     last_edited: string
 }
+
+// Blog belongs to One User

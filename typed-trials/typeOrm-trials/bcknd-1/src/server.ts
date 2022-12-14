@@ -12,7 +12,7 @@ const PORT  = process.env.PORT || 3500;
 
 AppDataSource.initialize().then(async ()=>{
     console.log("Connection to Database is successfull!")
-    // dbSeeder()
+    // dbSeeder();
     // console.log(process.env.TZ)
     const app:Express = express();
     //* Middlewares 

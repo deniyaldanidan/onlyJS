@@ -24,8 +24,6 @@ export default async function ():Promise<User> {
     
     await AppDataSource.manager.save(user);
     await AppDataSource.manager.save(profile);
-    
-
 
     console.log(`User ${user.username} is created`);
     return user;
