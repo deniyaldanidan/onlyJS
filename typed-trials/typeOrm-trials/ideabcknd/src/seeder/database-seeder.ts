@@ -13,7 +13,7 @@ AppDataSource.initialize().then(async ()=>{
     console.log("Started Seeding")
     const users:User[] = await UserFactory(30);
     
-    const ideas:Idea[] =  await IdeaFactory(users, 80);
+    const ideas:Idea[] =  await IdeaFactory(users, 300);
     console.log("Before Comment")
     await CommentFactory(users, ideas, 90);
     await LikeFactory(users, ideas);

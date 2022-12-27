@@ -85,7 +85,7 @@ const registerController: RequestHandler = async (req, res, next) => {
 
         const accToken = signAccessTkn({username: uname, firstname: fname, lastname: lname});
 
-        res.cookie("jwt", rToken, { httpOnly: true, maxAge: 10 * 60 * 1000 });
+        res.cookie("jwt", rToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000 }); // 5hours
         return res.json({ success: true, accToken });
     } catch (error) {
         next(error)

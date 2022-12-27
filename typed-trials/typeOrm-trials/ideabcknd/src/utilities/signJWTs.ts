@@ -18,11 +18,11 @@ type signAccTypeInps = signrefreshTypeInps & {
  *  firstname: string,
  *  lastname: string
  * } 
- * @returns This function will return jwt-access-token with http-only=true and expiresIn= 5 minutes
+ * @returns This function will return jwt-access-token with http-only=true and expiresIn= 1 hour
  * 
  */
 
-export const signAccessTkn:(signAccTypeInps:signAccTypeInps)=>string = ({username, firstname, lastname})=>jwt.sign({ uname: username, fname: firstname, lname: lastname }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "5m" })
+export const signAccessTkn:(signAccTypeInps:signAccTypeInps)=>string = ({username, firstname, lastname})=>jwt.sign({ uname: username, fname: firstname, lname: lastname }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" })
 
 /**
  * 
@@ -31,7 +31,7 @@ export const signAccessTkn:(signAccTypeInps:signAccTypeInps)=>string = ({usernam
  * {
  *  username: string
  * }
- * @returns This function will return jwt-access-token with http-only=true and expiresIn= 10 minutes
+ * @returns This function will return jwt-access-token with http-only=true and expiresIn= 5 hours
  */
 
-export const signRefreshTkn:(signrefreshTypeInps:signrefreshTypeInps)=>string = ({username})=>jwt.sign({uname:username}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "10m"})
+export const signRefreshTkn:(signrefreshTypeInps:signrefreshTypeInps)=>string = ({username})=>jwt.sign({uname:username}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "5h"})

@@ -43,7 +43,7 @@ const loginController: RequestHandler = async (req, res, next) => {
 
         const accToken = signAccessTkn({username: foundUser.username, firstname: foundUser.profile.firstname, lastname: foundUser.profile.lastname});
 
-        res.cookie("jwt", rToken, { httpOnly: true, maxAge: 10 * 60 * 1000 });
+        res.cookie("jwt", rToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000 }); // 5hours
         return res.json({ success: true, accToken });
     } catch (error) {
         next(error)
