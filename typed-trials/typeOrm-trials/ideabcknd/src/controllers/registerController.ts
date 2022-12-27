@@ -3,9 +3,9 @@ import AppDataSource from "../data-source";
 import { Profile } from "../entities/Profile";
 import { User } from "../entities/User";
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import { isString } from "lodash";
+import { signAccessTkn, signRefreshTkn } from "../utilities/signJWTs";
 
 const userRepo = AppDataSource.getRepository(User);
 const profileRepo = AppDataSource.getRepository(Profile);
@@ -66,7 +66,7 @@ const registerController: RequestHandler = async (req, res, next) => {
         }
 
         const pwd = await bcrypt.hash(password, 9);
-        const rToken = jwt.sign({ uname }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "10m" });
+        const rToken = signRefreshTkn({username: uname});
         const myUser = userRepo.create({
             username: uname,
             pwd,
@@ -83,9 +83,9 @@ const registerController: RequestHandler = async (req, res, next) => {
         myProfile.user = myUser;
         await profileRepo.save(myProfile);
 
-        const accToken = jwt.sign({ uname, fname, lname }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "5m" });
+        const accToken = signAccessTkn({username: uname, firstname: fname, lastname: lname});
 
-        res.cookie("jwt", rToken, { httpOnly: true, maxAge: 5 * 60 * 1000 });
+        res.cookie("jwt", rToken, { httpOnly: true, maxAge: 10 * 60 * 1000 });
         return res.json({ success: true, accToken });
     } catch (error) {
         next(error)

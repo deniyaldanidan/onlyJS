@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/server.ts",
+    "seed": "ts-node src/seeder/database-seeder.ts",
     "start": "ts-node src/servers",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "sample": "ts-node test.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

@@ -5,9 +5,10 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import corsOptions from './config/corsOptions';
 import Handle404 from './middlewares/404Handler';
-import HomeController from './controllers/HomeController';
 import MasterErrorHandler from './middlewares/MasterErrorHandler';
 import authRouter from './routes/auth';
+import baseRouter from './routes/baseRouter';
+import ideaRouter from './routes/api/ideaRoutes';
 
 const PORT = process.env.PORT || 3500;
 
@@ -22,8 +23,9 @@ AppDataSource.initialize().then(()=>{
     app.use(cookieParser())
     app.use(urlencoded({extended:true}));
     //** Routes */
-    app.get("/", HomeController);
+    app.use("/", baseRouter);
     app.use("/auth", authRouter);
+    app.use("/ideas", ideaRouter);
 
     //** 404 & Error Handlers */
     app.use("*", Handle404);

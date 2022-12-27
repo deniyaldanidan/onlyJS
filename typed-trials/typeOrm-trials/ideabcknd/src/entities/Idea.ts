@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { MyComment } from './MyComment';
 import { MyLike } from './MyLike';
 import { User } from './User';
@@ -23,6 +23,11 @@ export class Idea{
         type: "timestamp with time zone"
     })
     created_date: string
+
+    @UpdateDateColumn({
+        type: "timestamp with time zone"
+    })
+    updated_date: string
 
     @ManyToOne(()=>User, (user)=>user.ideas, {
         onDelete:"CASCADE"
