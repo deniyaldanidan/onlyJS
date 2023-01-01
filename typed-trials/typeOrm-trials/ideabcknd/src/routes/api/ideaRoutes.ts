@@ -1,15 +1,20 @@
 import { Router } from "express";
-import { createIdea, deleteIdea, getAllIdeas, getOneIdea, updateIdea } from "../../controllers/IdeaController";
+import { createIdea, deleteIdea, getAllIdeas, getOneIdea, ideaErrorHandler, updateIdea } from "../../controllers/IdeaController";
+import verifyJWT from "../../middlewares/verifyJWT";
 
 
 const ideaRouter = Router();
 
+ideaRouter.route("/")
+    .get(getAllIdeas)
+    .post(verifyJWT, createIdea)
+    .put(verifyJWT, updateIdea);
 
-ideaRouter.get("/", getAllIdeas);
-ideaRouter.post("/", createIdea);
-ideaRouter.put("/", updateIdea);
-ideaRouter.get("/:id", getOneIdea);
-ideaRouter.delete("/:id", deleteIdea);
+ideaRouter.route("/:id")
+    .get(getOneIdea)
+    .delete(verifyJWT, deleteIdea);
 
+
+ideaRouter.use(ideaErrorHandler);
 
 export default ideaRouter;

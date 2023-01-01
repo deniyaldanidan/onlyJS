@@ -1,10 +1,12 @@
-import { RequestHandler } from "express";
+import { ErrorRequestHandler, RequestHandler } from "express";
 import { isSafeInteger, isString } from "lodash";
 import { EntityNotFoundError, Repository } from "typeorm";
 import AppDataSource from "../data-source";
 import { Idea } from "../entities/Idea";
 import { User } from "../entities/User";
 import validator from "validator";
+import cmtOutputFormater, { formattedComment } from "../utilities/cmtOutputFormater";
+import likeOutputFormater, { formattedLike } from "../utilities/likeOutputFormatter";
 
 const ideaRepo: Repository<Idea> = AppDataSource.getRepository(Idea);
 const userRepo: Repository<User> = AppDataSource.getRepository(User);
@@ -67,11 +69,12 @@ export const getAllIdeas: RequestHandler = async (req, res, next) => {
         const previous_page = curr_page <= total_pages ? (curr_page > 1 && curr_page - 1) : total_pages;
 
         res.json({
-            total,
+            total_ideas: total,
+            per_page: perPage,
+            total_pages,
             curr_page,
             previous_page,
             next_page,
-            total_pages,
             ideas: allIdeas
         });
 
@@ -107,37 +110,26 @@ export const getOneIdea: RequestHandler = async (req, res, next) => {
             location: result.author.profile?.location
         }
 
-        const likes = result.likes.map(like => {
-            return { ...like, liked_by: like.liked_by.username }
-        });
+        const likes:Array<formattedLike> = result.likes.map(like => likeOutputFormater(like) );
 
         const n_likes = result.likes.filter(like => like.like_value === "like").length;
         const n_unlikes = result.likes.filter(like => like.like_value === "unlike").length;
 
-        const comments = result.comments.map(cmt => {
-            const commenterInfo = {
-                commenter_username: cmt.commented_by.username,
-                commenter_name: cmt.commented_by.profile.firstname + " " + cmt.commented_by.profile.lastname
-            }
-            return { id: cmt.id, comment: cmt.comment, commented_by: commenterInfo, commented_on: cmt.commented_on, last_edited: cmt.last_edited }
-        })
+        const comments:Array<formattedComment> = result.comments.map(cmt => cmtOutputFormater(cmt, cmt.commented_by))
 
         const fetchedIdea = { ...result, author: authorInfo, n_likes, n_unlikes, likes, comments }
         return res.json(fetchedIdea);
     } catch (error) {
-        if (error instanceof EntityNotFoundError) {
-            return res.status(404).json({ error: 'Requested Idea not found' })
-        }
         next(error)
     }
 }
 
 export const createIdea: RequestHandler = async (req, res, next) => {
     const { title, description } = req.body;
-    const username = "Marc64";
+    const username = res.locals.uname;
     try {
         if (!isString(title) || !isString(description)) {
-            return res.status(401).json({ error: "Invalid Values" })
+            return res.status(400).json({ error: "Invalid Values" })
         }
         const author: User = await userRepo.findOneBy({ username });
         const newIdea: Idea = ideaRepo.create({ title, description, author });
@@ -150,10 +142,10 @@ export const createIdea: RequestHandler = async (req, res, next) => {
 
 export const updateIdea: RequestHandler = async (req, res, next) => {
     const { id, title, description } = req.body;
-    const username = "Marc64";
+    const username = res.locals.uname;
     try {
         if (!isSafeInteger(parseInt(id)) || !isString(title) || !isString(description)) {
-            return res.status(401).json({ error: "Invalid values" });
+            return res.status(400).json({ error: "Invalid values" });
         }
         const foundIdea = await ideaRepo.createQueryBuilder("idea")
             .leftJoinAndSelect("idea.author", "author")
@@ -166,19 +158,17 @@ export const updateIdea: RequestHandler = async (req, res, next) => {
 
         return res.json(foundIdea);
     } catch (error) {
-        if (error instanceof EntityNotFoundError) {
-            return res.status(404).json({ error: "Requested Idea not found" })
-        }
+        next(error)
     }
 }
 
 export const deleteIdea: RequestHandler = async (req, res, next) => {
     const id = req.params.id as string;
-    const username = "Marc64"
+    const username = res.locals.uname;
 
     try {
         if (!isSafeInteger(parseInt(id))) {
-            return res.status(401).json({ error: "Invalid Values" })
+            return res.status(400).json({ error: "Invalid Values" })
         }
 
         const foundIdea = await ideaRepo.createQueryBuilder("idea")
@@ -188,10 +178,15 @@ export const deleteIdea: RequestHandler = async (req, res, next) => {
 
         await ideaRepo.remove(foundIdea);
 
-        return res.json({success: true});
+        return res.json({ success: true });
     } catch (error) {
-        if (error instanceof EntityNotFoundError) {
-            return res.status(404).json({ error: "Requested Idea not found" })
-        }
+        next(error)
     }
+}
+
+export const ideaErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    if (err instanceof EntityNotFoundError) {
+        return res.status(404).json({ error: "Requested Idea not found" })
+    }
+    next(err);
 }

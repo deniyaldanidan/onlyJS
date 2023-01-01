@@ -27,33 +27,33 @@ const registerController: RequestHandler = async (req, res, next) => {
     const { uname, password, email, fname, lname, location, bio }: reqBodyType = req.body;
 
     if (!uname?.length || !password?.length || !email?.length || !fname?.length || !lname?.length) {
-        return res.status(409).json({ error: "Missing some fields" })
+        return res.status(400).json({ error: "Missing some fields" })
     }
 
     try {
 
         if (!validator.isEmail(email)) {
-            return res.status(409).json({ error: "Invalid Email Field" });
+            return res.status(400).json({ error: "Invalid Email Field" });
         }
 
         if (!validator.isStrongPassword(password, { minLength: 10, minSymbols: 2 })) {
-            return res.status(409).json({ error: "Password is too weak" });
+            return res.status(400).json({ error: "Password is too weak" });
         }
 
         if (!validator.isAlphanumeric(uname, "en-US", { ignore: "_-." })) {
-            return res.status(409).json({ error: "Invalid username value" })
+            return res.status(400).json({ error: "Invalid username value" })
         }
 
         if (!validator.isAlpha(fname) || !validator.isAlpha(lname)) {
-            return res.status(409).json({ error: "Invalid firstname or lastname value" })
+            return res.status(400).json({ error: "Invalid firstname or lastname value" })
         }
 
         if (location?.length && !validator.isAlphanumeric(location, "en-US", { ignore: " -_" })) {
-            return res.status(409).json({error: "Invalid location value"})
+            return res.status(400).json({error: "Invalid location value"})
         }
 
         if (bio?.length && !isString(bio)){
-            return res.status(409).json({error: "Invalid bio value"});
+            return res.status(400).json({error: "Invalid bio value"});
         }
 
         const foundUser = await userRepo.createQueryBuilder("user")
@@ -62,7 +62,7 @@ const registerController: RequestHandler = async (req, res, next) => {
             .getOne();
 
         if (foundUser) {
-            return res.status(409).json({ error: "Username or email already taken" });
+            return res.status(409).json({ error: "Account already exists try logging in.." });
         }
 
         const pwd = await bcrypt.hash(password, 9);

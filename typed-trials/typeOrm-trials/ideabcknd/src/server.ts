@@ -9,6 +9,8 @@ import MasterErrorHandler from './middlewares/MasterErrorHandler';
 import authRouter from './routes/auth';
 import baseRouter from './routes/baseRouter';
 import ideaRouter from './routes/api/ideaRoutes';
+import likeCommentRouter from './routes/api/likeCommentRoutes';
+import profileRouter from './routes/api/profileRouter';
 
 const PORT = process.env.PORT || 3500;
 
@@ -26,6 +28,8 @@ AppDataSource.initialize().then(()=>{
     app.use("/", baseRouter);
     app.use("/auth", authRouter);
     app.use("/ideas", ideaRouter);
+    app.use("/", likeCommentRouter);
+    app.use("/profile", profileRouter)
 
     //** 404 & Error Handlers */
     app.use("*", Handle404);
