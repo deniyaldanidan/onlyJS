@@ -4,6 +4,7 @@
   color: inherit;
   font-family: 'Eczar', serif;
   letter-spacing: 1.35px;
+  box-sizing: border-box;
 }
 
 body {
@@ -20,16 +21,89 @@ body {
   text-align: center;
 }
 
+.dual-grouped-input{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  column-gap: 20px;
+}
+
 .inp-grp{
   display: flex;
   flex-direction: column;
-  row-gap: 3px;
-  width: 75%;
+  align-items: flex-start;
+  row-gap: 2px;
+  width: 42ch;
+
+  &.lg{
+    width: 85%;
+  }
+  
+  &.md{
+    width: 34ch;
+  }
+  
+  &.sm{
+    width: 30ch;
+  }
 
   label{
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     letter-spacing: 1.35px;
+  }
+
+  textarea{
+    width: 100%;
+    height: 180px;
+    display: block;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #123;
+    font-size: 1rem;
+    letter-spacing: 1.3px;
+    color: #cde;
+    overflow-y: scroll;
+    resize: none;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar{
+      display: none;
+    }
+  }
+
+  .error-inp{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    width: 100%;
+
+    .inp-err{
+      align-self: center;
+      max-width: 90%;
+      font-size: 0.85rem;
+      line-height: 1rem;
+      color: rgb(255, 124, 124);
+    }
+  }
+
+  .joined-input{
+    position: relative;
+    width: 100%;
+
+    .joined-item{
+      display: flex;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      svg{
+        font-size: 1rem;
+      }
+    }
   }
 
   input{
@@ -38,7 +112,7 @@ body {
     border: none;
     outline: none;
     border-radius: 20px;
-    padding: 10px 22px;
+    padding: 5px 15px;
     background-color: #123;
     font-size: 1rem;
     letter-spacing: 1.3px;

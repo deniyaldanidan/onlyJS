@@ -1,9 +1,9 @@
 .app{
-    width: 90%;
-    max-width: 650px;
+    width: 95%;
+    max-width: 750px;
     margin: 20px auto;
     background-color: #345;
-    min-height: 700px;
+    height: 720px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -21,8 +21,7 @@
 
 
     .app-body{
-        padding: 40px 45px;
-        height: 480px;
+        padding: 20px;
         overflow-y: scroll;
         flex-grow: 1;
         -ms-overflow-style: none;
@@ -59,12 +58,19 @@
             display: flex;
             column-gap: 30px;
             align-items: center;
+
+            .info-menu{
+                font-size: 1.2rem;
+                line-height: 1.2rem;
+            }
             
             .menu{
+                display: flex;
                 font-size: 1.45rem;
                 line-height: 1.25rem;
                 transition: 150ms all ease-in-out;
                 position: relative;
+                cursor: pointer;
 
                 &:hover{
                     color: #7af;
@@ -75,7 +81,7 @@
                         height: 0;
                         display: block;
                         position: absolute;
-                        top: calc(100% - 1px);
+                        top: calc(100% + 5px);
                         left: 50%;
                         transform: translateX(-50%);
                         border-left: 30px solid transparent;
@@ -87,7 +93,7 @@
                         content: attr(data-info);
                         display: block;
                         position: absolute;
-                        top: calc(100% + 5px);
+                        top: calc(100% + 10px);
                         left: 50%;
                         transform: translateX(-50%);
                         color: #fff;

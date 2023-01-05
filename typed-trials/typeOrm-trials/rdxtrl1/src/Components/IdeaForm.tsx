@@ -2,7 +2,7 @@ import { FormEventHandler, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {addIdea, editIdea, IdeaType} from '../features/ideas/IdeaSlice';
-import '../styles/idea-form.scss';
+import '../styles/my-form.scss';
 
 type IdeaFormProp = {
     initialTitle?: IdeaType['title'],
@@ -53,7 +53,7 @@ const IdeaForm:(props:IdeaFormProp)=>JSX.Element = ({initialTitle, edit, ideaId}
     }
 
     return (
-        <div className="idea-form">
+        <div className="my-form">
             <div className="form-title">{edit ? "Edit" : "Add"} Idea</div>
             <div className="error">{err}</div>
             <form onSubmit={submitHandler}>
