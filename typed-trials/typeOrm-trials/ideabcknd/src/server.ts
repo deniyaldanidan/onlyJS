@@ -11,6 +11,7 @@ import baseRouter from './routes/baseRouter';
 import ideaRouter from './routes/api/ideaRoutes';
 import likeCommentRouter from './routes/api/likeCommentRoutes';
 import profileRouter from './routes/api/profileRouter';
+import fetchAllRouter from './routes/api/fetchAllRoutes';
 
 const PORT = process.env.PORT || 3500;
 
@@ -26,6 +27,7 @@ AppDataSource.initialize().then(()=>{
     app.use(urlencoded({extended:true}));
     //** Routes */
     app.use("/", baseRouter);
+    app.use("/all", fetchAllRouter);
     app.use("/auth", authRouter);
     app.use("/ideas", ideaRouter);
     app.use("/", likeCommentRouter);

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import '../styles/main.scss'
 import { TbBulb } from 'react-icons/tb';
-import { AiOutlineHome, AiOutlineLogin, AiOutlineLogout, AiOutlinePlusCircle, AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineLogin, AiOutlineLogout, AiOutlinePlusCircle, AiOutlineSearch, AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { BiTestTube } from 'react-icons/bi';
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -32,6 +32,7 @@ const MainLayout = () => {
                     }
                     <Link to="/" className="menu" data-info="Home" ><AiOutlineHome /></Link>
                     <Link to="/test-page" data-info="Test" className="menu"><BiTestTube /></Link>
+                    <Link to="/search-idea" data-info="search-idea" className="menu"><AiOutlineSearch/></Link>
                     {
                         isAuth ?
                             (

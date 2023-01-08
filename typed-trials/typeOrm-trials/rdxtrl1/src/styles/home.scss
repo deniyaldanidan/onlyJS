@@ -1,10 +1,10 @@
 .idea-bar {
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    row-gap: 10px;
     background-color: #123;
     border-radius: 20px;
-    padding: 15px 18px;
+    padding: 20px;
     transition: all 400ms ease-in-out;
 
     &:hover {
@@ -17,11 +17,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        column-gap: 40px;
 
         .left-sec {
             font-size: 1.2rem;
             font-weight: 500;
             letter-spacing: 1.35px;
+            letter-spacing: 1.4px;
+            word-spacing: 3px;
+            transition: color 400ms ease-in-out;
+
+            &:hover{
+                color: #7cf;
+            }
         }
 
         .right-sec {
@@ -44,6 +52,33 @@
                 }
             }
 
+        }
+    }
+
+    .bar-mid-sec, .bar-btm-sec{
+        font-size: 0.85rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .author-meta{
+            a{
+                text-decoration: none;
+                transition: color 250ms ease-in;
+                &:hover{
+                    color: #7cf;
+                }
+            }
+        }
+    }
+
+    .bar-btm-sec{
+        .icon-meta{
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            line-height: 1rem;
+            column-gap: 4px;
         }
     }
 }
