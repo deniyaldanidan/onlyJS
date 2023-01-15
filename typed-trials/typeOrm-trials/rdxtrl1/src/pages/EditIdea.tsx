@@ -16,7 +16,7 @@ const EditIdea = ()=>{
         }
     }, [location, navigate])
 
-    return <IdeaForm edit={true} initialTitle={location.state.idea.title} ideaId={location.state.idea.id} />
+    return <IdeaForm edit={true} initialTitle={location.state.idea.title} initialDescription={location.state.idea.description} ideaId={location.state.idea.id} />
 }
 
 

@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
   color: inherit;
@@ -17,48 +17,52 @@ body {
 }
 
 
-.info-bar{
+.info-bar {
   font-size: 1.5rem;
   text-align: center;
 
-  &.danger{
-    color:rgb(255, 124, 124)
+  &.danger {
+    color: rgb(255, 124, 124)
+  }
+
+  &.sm {
+    font-size: 1rem;
   }
 }
 
-.dual-grouped-input{
+.dual-grouped-input {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   column-gap: 20px;
 }
 
-.inp-grp{
+.inp-grp {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   row-gap: 2px;
   width: 42ch;
 
-  &.lg{
+  &.lg {
     width: 85%;
   }
-  
-  &.md{
+
+  &.md {
     width: 34ch;
   }
-  
-  &.sm{
+
+  &.sm {
     width: 30ch;
   }
 
-  label{
+  label {
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 1.35px;
   }
 
-  textarea{
+  textarea {
     width: 100%;
     height: 180px;
     display: block;
@@ -74,18 +78,18 @@ body {
     resize: none;
     scroll-behavior: smooth;
 
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
       display: none;
     }
   }
 
-  .error-inp{
+  .error-inp {
     display: flex;
     flex-direction: column;
     row-gap: 6px;
     width: 100%;
 
-    .inp-err{
+    .inp-err {
       align-self: center;
       max-width: 90%;
       font-size: 0.85rem;
@@ -94,24 +98,25 @@ body {
     }
   }
 
-  .joined-input{
+  .joined-input {
     position: relative;
     width: 100%;
 
-    .joined-item{
+    .joined-item {
       display: flex;
       position: absolute;
       top: 50%;
       right: 15px;
       transform: translateY(-50%);
       cursor: pointer;
-      svg{
+
+      svg {
         font-size: 1rem;
       }
     }
   }
 
-  input{
+  input {
     display: block;
     width: 100%;
     border: none;
@@ -122,5 +127,120 @@ body {
     font-size: 1rem;
     letter-spacing: 1.3px;
     color: #cde;
+  }
+}
+
+.idea-bar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: #123;
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 400ms ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(119, 136, 153, 1);
+    -moz-box-shadow: 0px 0px 8px 1px rgba(119, 136, 153, 1);
+    box-shadow: 0px 0px 8px 1px rgba(119, 136, 153, 1)
+  }
+
+  .bar-top-sec {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1.35px;
+    letter-spacing: 1.4px;
+    word-spacing: 3px;
+
+    a {
+      transition: color 400ms ease-in-out;
+
+      &:hover {
+        color: #7cf;
+      }
+    }
+  }
+
+
+  .bar-mid-sec,
+  .bar-btm-sec {
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 15px;
+
+    .author-meta {
+      a {
+        text-decoration: none;
+        transition: color 250ms ease-in;
+
+        &:hover {
+          color: #7cf;
+        }
+      }
+    }
+  }
+
+  .bar-btm-sec {
+    .icon-meta {
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+      line-height: 1rem;
+      column-gap: 4px;
+    }
+  }
+}
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.user-card {
+  display: block;
+  padding: 20px;
+  background-color: #123;
+  border-radius: 10px;
+
+  .name {
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+  }
+
+  .username {
+    margin-top: 10px;
+    font-size: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .joined, .location, .bio{
+    text-align: center;
+  }
+
+  .card-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    column-gap: 30px;
+    margin-top: 20px;
+
+    .card-link {
+      display: block;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 350ms ease-in-out;
+
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
   }
 }

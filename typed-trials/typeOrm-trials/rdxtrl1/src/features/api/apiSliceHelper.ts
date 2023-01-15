@@ -30,3 +30,37 @@ export type fetchAllIdeaType = {
     likes: Array<likeType>,
     comments: Array<commentType>
 }
+
+
+export type ideaViewType = fetchAllIdeaType & {
+    author: {
+        username: string,
+        name: string,
+        bio?: string,
+        location?: string
+    }
+}
+
+export type addIdeaInp = {
+    title: string,
+    description: string,
+    acc_tkn: string
+}
+
+export type EditIdeaInp = addIdeaInp & {id:number}
+
+export type fetchAllUsersResType = {
+    username: string,
+    joined_date: string,
+    profile: {
+        id: number,
+        firstname: string,
+        lastname: string,
+        bio?: string,
+        location?: string
+    }
+}
+
+export type fetchAllUsersType = fetchAllUsersResType & {
+    fullname: string
+}

@@ -6,10 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './app/store';
 import { BrowserRouter } from 'react-router-dom';
+import { extendedApiSlice } from './features/allUsers/allUsersSlice';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(extendedApiSlice.endpoints.getAllUserInfos.initiate());
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

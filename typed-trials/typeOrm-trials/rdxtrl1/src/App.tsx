@@ -7,6 +7,8 @@ import IdeaView from "./pages/IdeaView";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import TestPage from './pages/TestPage';
+import UsersList from "./pages/UsersList";
+import ViewUserProfile from "./pages/ViewUserProfile";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/" element={<MainLayout/>}>
         <Route index element={<Home/>} />
         <Route path="/idea/:id" element={<IdeaView/>} />
+        <Route path="/users-list" element={<UsersList/>} />
+        <Route path="/view-profile/:username" element={<ViewUserProfile />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Register/>} />
         <Route path="/add-idea" element={<AddIdea/>} />

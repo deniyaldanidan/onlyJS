@@ -17,12 +17,12 @@ const Home = () => {
     }, [ideas])
 
     useEffect(() => {
-        isSuccess && console.log(ideas[0])
+        // isSuccess && console.log(ideas[0])
         isError && console.log(error)
     }, [ideas, isSuccess, isError, error, refetch])
 
-    if (isError){
-        return <div className="info-bar danger">Error Happened</div>
+    if(isError){
+        return <div className="info-bar danger">Error Happened in Home-Page</div>
     }
 
     return (

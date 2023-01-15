@@ -3,6 +3,7 @@ import '../styles/main.scss'
 import { TbBulb } from 'react-icons/tb';
 import { AiOutlineHome, AiOutlineLogin, AiOutlineLogout, AiOutlinePlusCircle, AiOutlineSearch, AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { BiTestTube } from 'react-icons/bi';
+import { FaUsers } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { logoutUser } from "../features/auth/authSlice";
@@ -11,7 +12,7 @@ const MainLayout = () => {
     const { isAuth, fullname } = useAppSelector(state => state.auth.data);
     const dispatch = useAppDispatch();
 
-    const logoutHandler = ()=>{
+    const logoutHandler = () => {
         dispatch(logoutUser())
     }
 
@@ -28,11 +29,12 @@ const MainLayout = () => {
                     {
                         isAuth ? (
                             <div className="info-menu">Hi, {fullname}</div>
-                        ) :""
+                        ) : ""
                     }
                     <Link to="/" className="menu" data-info="Home" ><AiOutlineHome /></Link>
                     <Link to="/test-page" data-info="Test" className="menu"><BiTestTube /></Link>
-                    <Link to="/search-idea" data-info="search-idea" className="menu"><AiOutlineSearch/></Link>
+                    <Link to="/search-idea" data-info="search" className="menu"><AiOutlineSearch /></Link>
+                    <Link to="/users-list" data-info="all users" className="menu"><FaUsers /></Link>
                     {
                         isAuth ?
                             (
