@@ -1,12 +1,10 @@
 import { formatDistanceToNow } from "date-fns";
-import { isString } from "lodash";
 import { useEffect } from "react";
 import { AiOutlineComment, AiOutlineDislike, AiOutlineLike, AiOutlineEnvironment } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../app/hooks";
 import { useDeleteIdeaMutation, useGetOneIdeaQuery } from "../features/api/apiSlice";
-import validator from "validator";
 import '../styles/idea-view.scss';
 
 
@@ -14,7 +12,7 @@ const IdeaView = (): JSX.Element => {
     const { id: ideaId } = useParams();
     const [deleteIdea] = useDeleteIdeaMutation();
     const { data: idea, isLoading, isError, isSuccess, error } = useGetOneIdeaQuery(parseInt(ideaId as string) || 1);
-    const { isAuth, username, access_token } = useAppSelector(state => state.auth.data);
+    const { isAuth, username} = useAppSelector(state => state.auth.data);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,11 +36,11 @@ const IdeaView = (): JSX.Element => {
     }
 
     const deleteHandler = async () => {
-        if (idea === undefined || !isAuth || !isString(access_token) || !validator.isJWT(access_token)) {
+        if (idea === undefined) {
             return;
         }
         try {
-            await deleteIdea({ id: idea.id, acc_token: access_token }).unwrap();
+            await deleteIdea({ id: idea.id}).unwrap();
             navigate("/");
         } catch (error) {
             console.log(error);

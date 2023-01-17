@@ -43,8 +43,7 @@ export type ideaViewType = fetchAllIdeaType & {
 
 export type addIdeaInp = {
     title: string,
-    description: string,
-    acc_tkn: string
+    description: string
 }
 
 export type EditIdeaInp = addIdeaInp & {id:number}

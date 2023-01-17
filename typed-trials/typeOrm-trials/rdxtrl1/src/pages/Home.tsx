@@ -1,14 +1,15 @@
 import { useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
 import IdeaBar from "../Components/IdeaBar";
-import { useGetAllIdeasQuery } from "../features/api/apiSlice";
+import { apiSlice} from "../features/api/apiSlice";
 import { fetchAllIdeaType } from "../features/api/apiSliceHelper";
 import '../styles/home.scss'
 
 
 
 const Home = () => {
-    const { data: ideas = [], isLoading, isSuccess, isError, error, refetch } = useGetAllIdeasQuery();
-
+    const selectAllIdeasResult = apiSlice.endpoints.getAllIdeas.select();
+    const {data:ideas=[], isLoading, isError, isSuccess, error} = useSelector(selectAllIdeasResult);
 
     const sortedIdeas:fetchAllIdeaType[] = useMemo(()=>{
         const sorted = ideas.slice();
@@ -19,7 +20,7 @@ const Home = () => {
     useEffect(() => {
         // isSuccess && console.log(ideas[0])
         isError && console.log(error)
-    }, [ideas, isSuccess, isError, error, refetch])
+    }, [ideas, isSuccess, isError, error])
 
     if(isError){
         return <div className="info-bar danger">Error Happened in Home-Page</div>

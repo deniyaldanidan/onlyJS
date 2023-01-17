@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { client1 } from "../../api/client"
-import { AuthStateType, loginInitialLoad, parseAuthData, parseAuthError, registerInitialLoad, userAuthParamType } from "./authUtilities";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { client1 } from "../../api/client";
+import { AuthDataType, AuthStateType, loginInitialLoad, parseAuthData, parseAuthError, registerInitialLoad, userAuthParamType } from "./authUtilities";
 
 const initialValue: AuthStateType = {
     status: "idle",
@@ -29,6 +29,16 @@ const AuthSlice = createSlice(
             },
             setError: (state, action: { payload: string, type: string }) => {
                 state.error = action.payload
+            },
+            setAuth: {
+                reducer(state, action:PayloadAction<AuthDataType>){
+                    state.data = action.payload
+                },
+                prepare(access_token:string){
+                    return {
+                        payload: parseAuthData(access_token)
+                    };
+                },
             }
         },
         extraReducers(builder) {
@@ -82,6 +92,6 @@ export const authUser = createAsyncThunk(
     }
 )
 
-export const { resetStatusNError, unSetAuth, setError } = AuthSlice.actions;
+export const { resetStatusNError, unSetAuth, setError, setAuth } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

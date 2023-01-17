@@ -32,15 +32,14 @@ const MainLayout = () => {
                         ) : ""
                     }
                     <Link to="/" className="menu" data-info="Home" ><AiOutlineHome /></Link>
-                    <Link to="/test-page" data-info="Test" className="menu"><BiTestTube /></Link>
                     <Link to="/search-idea" data-info="search" className="menu"><AiOutlineSearch /></Link>
                     <Link to="/users-list" data-info="all users" className="menu"><FaUsers /></Link>
                     {
                         isAuth ?
                             (
                                 <>
+                                    <Link to="/test-page" data-info="Test" className="menu"><BiTestTube /></Link>
                                     <Link to="/add-idea" data-info="Add Idea" className="menu"><AiOutlinePlusCircle /></Link>
-
                                     <Link to="/" className="menu" data-info="Profile" ><AiOutlineUser /></Link>
                                     <div data-info="Logout" className="menu" onClick={logoutHandler} ><AiOutlineLogout /></div>
                                 </>

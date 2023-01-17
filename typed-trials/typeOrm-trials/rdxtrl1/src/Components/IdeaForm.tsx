@@ -1,9 +1,6 @@
 import { FormEventHandler, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../app/hooks";
 import '../styles/my-form.scss';
-import validator from "validator";
-import { isString } from "lodash";
 import { addIdeaInp, EditIdeaInp } from "../features/api/apiSliceHelper";
 import { useAddNewIdeaMutation, useEditIdeaMutation } from "../features/api/apiSlice";
 
@@ -17,15 +14,8 @@ type IdeaFormProp = {
 const IdeaForm: (props: IdeaFormProp) => JSX.Element = ({ initialTitle, edit, ideaId, initialDescription }) => {
 
     const navigate = useNavigate();
-    const { isAuth, access_token } = useAppSelector(state => state.auth.data);
     const [addNewIdea] = useAddNewIdeaMutation();
     const [editIdea] = useEditIdeaMutation();
-
-    useEffect(() => {
-        if (!isAuth || !isString(access_token) || !validator.isJWT(access_token)) {
-            navigate("/")
-        }
-    }, [isAuth, access_token, navigate])
 
     const [title, setTitle] = useState<addIdeaInp['title']>("");
     const [description, setDescription] = useState<addIdeaInp['description']>("");
@@ -56,10 +46,10 @@ const IdeaForm: (props: IdeaFormProp) => JSX.Element = ({ initialTitle, edit, id
         }
         try {
             if (!edit) {
-                await addNewIdea({title, description, acc_tkn: access_token as string}).unwrap()
+                await addNewIdea({title, description}).unwrap()
             }
             if (edit && ideaId !== undefined) {
-                await editIdea({ id: ideaId, title, description, acc_tkn: access_token as string}).unwrap();
+                await editIdea({ id: ideaId, title, description}).unwrap();
             }
             setTitle("");
             setDescription("")

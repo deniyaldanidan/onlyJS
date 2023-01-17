@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './app/store';
 import { BrowserRouter } from 'react-router-dom';
+import { apiSlice } from './features/api/apiSlice';
 import { extendedApiSlice } from './features/allUsers/allUsersSlice';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+store.dispatch(apiSlice.endpoints.getAllIdeas.initiate())
 store.dispatch(extendedApiSlice.endpoints.getAllUserInfos.initiate());
 
 root.render(
