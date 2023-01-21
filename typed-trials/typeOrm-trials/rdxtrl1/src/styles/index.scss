@@ -8,6 +8,16 @@
   text-decoration: none;
 }
 
+textarea {
+  overflow-y: scroll;
+  resize: none;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -74,13 +84,6 @@ body {
     font-size: 1rem;
     letter-spacing: 1.3px;
     color: #cde;
-    overflow-y: scroll;
-    resize: none;
-    scroll-behavior: smooth;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   .error-inp {
@@ -208,6 +211,7 @@ body {
   border-radius: 10px;
 
   .name {
+    text-transform: capitalize;
     text-align: center;
     font-size: 1.25rem;
     line-height: 1.25rem;
@@ -221,7 +225,9 @@ body {
     margin-bottom: 20px;
   }
 
-  .joined, .location, .bio{
+  .joined,
+  .location,
+  .bio {
     text-align: center;
   }
 
@@ -238,8 +244,109 @@ body {
       cursor: pointer;
       transition: all 350ms ease-in-out;
 
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.comment-form {
+  margin-bottom: 50px;
+
+  .comment-form-head {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+  }
+
+  textarea {
+    margin-left: 10px;
+    width: 85%;
+    height: 100px;
+    display: block;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    border-bottom-left-radius: 0;
+    padding: 10px 15px;
+    background-color: #123;
+    font-size: 1rem;
+    letter-spacing: 1.3px;
+    color: #cde;
+  }
+
+  .btn-grps{
+    margin: 20px 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    column-gap: 40px;
+
+    button{
+      padding: 12px 30px;
+      font-size: 1rem;
+      line-height: 1rem;
+      background-color: #295;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all 350ms ease-in-out;
+
+      &.cancel{
+        background-color: #567;
+      }
+
       &:hover{
         transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.edit-profile-form{
+  .head{
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .btn-grps{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      column-gap: 80px;
+
+      button{
+        background-color: #295;
+        cursor: pointer;
+        padding: 8px 30px;
+        font-size: 1rem;
+        line-height: 1rem;
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        transition: all 350ms ease-in-out;
+
+        &:hover{
+          transform: scale(1.05);
+        }
+
+        &[type="button"]{
+          background-color: #567;
+        }
       }
     }
   }

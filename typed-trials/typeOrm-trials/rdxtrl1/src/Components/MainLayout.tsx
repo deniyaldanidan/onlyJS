@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import '../styles/main.scss'
 import { TbBulb } from 'react-icons/tb';
-import { AiOutlineHome, AiOutlineLogin, AiOutlineLogout, AiOutlinePlusCircle, AiOutlineSearch, AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineLogin, AiOutlineLogout, AiOutlinePlusCircle, AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { BiTestTube } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
 import { Link } from "react-router-dom";
@@ -32,7 +32,6 @@ const MainLayout = () => {
                         ) : ""
                     }
                     <Link to="/" className="menu" data-info="Home" ><AiOutlineHome /></Link>
-                    <Link to="/search-idea" data-info="search" className="menu"><AiOutlineSearch /></Link>
                     <Link to="/users-list" data-info="all users" className="menu"><FaUsers /></Link>
                     {
                         isAuth ?
@@ -40,7 +39,7 @@ const MainLayout = () => {
                                 <>
                                     <Link to="/test-page" data-info="Test" className="menu"><BiTestTube /></Link>
                                     <Link to="/add-idea" data-info="Add Idea" className="menu"><AiOutlinePlusCircle /></Link>
-                                    <Link to="/" className="menu" data-info="Profile" ><AiOutlineUser /></Link>
+                                    <Link to="/my-profile" className="menu" data-info="Profile" ><AiOutlineUser /></Link>
                                     <div data-info="Logout" className="menu" onClick={logoutHandler} ><AiOutlineLogout /></div>
                                 </>
                             )

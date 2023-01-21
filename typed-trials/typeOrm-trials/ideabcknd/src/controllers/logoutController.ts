@@ -17,7 +17,7 @@ const logoutController: RequestHandler = async (req, res, next) => {
         }
 
         const userRepo = AppDataSource.getRepository(User);
-        const foundUser = await userRepo.createQueryBuilder("user").where("user.refreshToken = :rToken", { rToken }).addSelect("user.refreshToken").getOne();
+        const foundUser = await userRepo.createQueryBuilder("user").where("user.refreshToken = :rToken", { rToken }).addSelect(["user.refreshToken"]).getOne();
 
         if (!foundUser) {
             /** verify the jwt if verified grab the uname and delete the user's refreshToken */
@@ -26,15 +26,13 @@ const logoutController: RequestHandler = async (req, res, next) => {
 
                 const stolenUser = await userRepo.createQueryBuilder("user").where("user.username = :uname", { uname: decoded.uname }).addSelect("user.refreshToken").getOne();
                 if (stolenUser) {
-                    stolenUser.refreshToken = "";
-                    userRepo.save(stolenUser);
+                    await userRepo.update({id: stolenUser.id}, {refreshToken: null});
                 }
             })
             return res.sendStatus(204);
         }
 
-        foundUser.refreshToken = "";
-        await userRepo.save(foundUser);
+        await userRepo.update({id: foundUser.id}, {refreshToken: null});
 
         return res.sendStatus(204);
     } catch (error) {

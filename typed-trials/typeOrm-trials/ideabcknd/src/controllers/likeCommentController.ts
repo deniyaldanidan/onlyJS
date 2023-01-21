@@ -1,5 +1,5 @@
 import { ErrorRequestHandler, RequestHandler } from "express";
-import { isSafeInteger, isString } from "lodash";
+import { isNumber, isSafeInteger, isString } from "lodash";
 import { EntityNotFoundError, Repository } from "typeorm";
 import AppDataSource from "../data-source";
 import { Idea } from "../entities/Idea";
@@ -7,7 +7,6 @@ import { MyComment } from "../entities/MyComment";
 import { MyLike, typeLikeValue } from "../entities/MyLike";
 import { User } from "../entities/User";
 import cmtOutputFormater from "../utilities/cmtOutputFormater";
-import ideaRefererHeadExtractor from "../utilities/ideaRefExtract";
 import likeOutputFormater from "../utilities/likeOutputFormatter";
 
 
@@ -17,15 +16,11 @@ const userRepo: Repository<User> = AppDataSource.getRepository(User);
 const commentRepo: Repository<MyComment> = AppDataSource.getRepository(MyComment);
 
 export const likeController: RequestHandler = async (req, res, next) => {
-    const { like_val }: { like_val: typeLikeValue } = req.body;
+    const { like_val, ideaId } : { like_val: typeLikeValue, ideaId: number } = req.body;
     const username: string = res.locals.uname;
-    const idea_id = ideaRefererHeadExtractor(req);
 
-    if (!(["like", "unlike"].includes(like_val))) {
+    if (!(["like", "unlike"].includes(like_val)) || !isSafeInteger(ideaId)) {
         return res.status(400).json({ error: "fields are missing" })
-    }
-    if (!idea_id) {
-        return res.status(400).json({ error: "Referer head is invalid" })
     }
 
     try {
@@ -33,7 +28,7 @@ export const likeController: RequestHandler = async (req, res, next) => {
             .leftJoinAndSelect("like.idea", "idea")
             .leftJoinAndSelect("like.liked_by", 'user')
             .where("user.username = :username", { username })
-            .andWhere("idea.id = :idea_id", { idea_id })
+            .andWhere("idea.id = :ideaId", { ideaId })
             .getOne();
 
         if (foundLike) {
@@ -49,7 +44,7 @@ export const likeController: RequestHandler = async (req, res, next) => {
         }
 
         //! if like does not exist yet!!!
-        const ideaObj: Idea = await ideaRepo.createQueryBuilder("idea").where("idea.id = :ideaId", { ideaId: idea_id }).leftJoinAndSelect("idea.likes", "likes").leftJoinAndSelect("likes.liked_by", "liked_by").getOneOrFail();
+        const ideaObj: Idea = await ideaRepo.createQueryBuilder("idea").where("idea.id = :ideaId", { ideaId }).leftJoinAndSelect("idea.likes", "likes").leftJoinAndSelect("likes.liked_by", "liked_by").getOneOrFail();
 
         const userObj: User = await userRepo.createQueryBuilder("user").where("user.username = :username", { username }).getOneOrFail();
 
@@ -67,15 +62,10 @@ export const likeController: RequestHandler = async (req, res, next) => {
 
 
 export const createComment: RequestHandler = async (req, res, next) => {
-    const { commentContent } = req.body;
+    const { commentContent, idea_id } = req.body;
     const username = res.locals.uname;
-    const idea_id = ideaRefererHeadExtractor(req);
 
-    if (!idea_id) {
-        return res.status(400).json({ error: "Referer head is invalid" });
-    }
-
-    if (!isString(commentContent) || !commentContent.length) {
+    if (!isString(commentContent) || !commentContent.length || !isSafeInteger(idea_id)) {
         return res.status(400).json({ error: "invalid values" })
     }
 
@@ -97,15 +87,10 @@ export const createComment: RequestHandler = async (req, res, next) => {
 }
 
 export const updateComment: RequestHandler = async (req, res, next) => {
-    const { id, commentContent } = req.body;
+    const { id, commentContent, idea_id } = req.body;
     const username = res.locals.uname;
-    const idea_id = ideaRefererHeadExtractor(req);
 
-    if (!idea_id) {
-        return res.status(400).json({ error: "Referer head is invalid" });
-    }
-
-    if (!isString(commentContent) || !commentContent.length || !isSafeInteger(parseInt(id))) {
+    if (!isString(commentContent) || !commentContent.length || !isSafeInteger(id) || !isSafeInteger(idea_id)  ) {
         return res.status(400).json({ error: "invalid values" })
     }
 
@@ -129,15 +114,10 @@ export const updateComment: RequestHandler = async (req, res, next) => {
 }
 
 export const deleteComment: RequestHandler = async (req, res, next) => {
-    const id:number = parseInt(req.params.id);
+    const {id, idea_id} = req.body;
     const username = res.locals.uname;
-    const idea_id = ideaRefererHeadExtractor(req);
 
-    if (!idea_id) {
-        return res.status(400).json({ error: "Referer head is invalid" });
-    }
-
-    if (!isSafeInteger(id)) {
+    if (!isSafeInteger(id) || !isSafeInteger(idea_id)) {
         return res.status(400).json({ error: "invalid values" })
     }
 

@@ -11,7 +11,7 @@ const baseQuery = fetchBaseQuery({
     baseUrl: "http://localhost:3500/",
     headers: [["Content-Type", "application/json"], ['Accept', 'application/json, text/plain']],
     credentials: "include",
-    timeout: 20 * 1000,
+    timeout: 45 * 1000,
     prepareHeaders: (headers, { getState }) => {
         const { isAuth, access_token } = (getState() as RootState).auth.data;
         if (isAuth && isString(access_token) && validator.isJWT(access_token)) {

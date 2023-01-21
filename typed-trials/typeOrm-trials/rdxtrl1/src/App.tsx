@@ -3,9 +3,11 @@ import MainLayout from "./Components/MainLayout";
 import ProtectedRoutesWrapper from "./Components/ProtectedRoutesWrapper";
 import AddIdea from "./pages/AddIdea";
 import EditIdea from "./pages/EditIdea";
+import EditProfile from "./pages/EditProfile";
 import Home from "./pages/Home";
 import IdeaView from "./pages/IdeaView";
 import Login from "./pages/Login";
+import MyProfile from "./pages/MyProfile";
 import Register from "./pages/Register";
 import TestPage from './pages/TestPage';
 import UsersList from "./pages/UsersList";
@@ -28,6 +30,8 @@ function App() {
           <Route path="/add-idea" element={<AddIdea />} />
           <Route path="/edit-idea" element={<EditIdea />} />
           <Route path="/test-page" element={<TestPage />} />
+          <Route path="/my-profile" element={<MyProfile/>} />
+          <Route path="/edit-my-profile" element={<EditProfile/>} />
         </Route>
 
         <Route path="*" element={<div className="info-bar">404 Not Found</div>} />

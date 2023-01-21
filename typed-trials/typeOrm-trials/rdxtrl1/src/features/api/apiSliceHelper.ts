@@ -1,6 +1,8 @@
+export type like_value_type = "like" | "unlike";
+
 export type likeType = {
     id: number,
-    like_value: "like" | "unlike",
+    like_value: like_value_type,
     liked_by: string
 }
 

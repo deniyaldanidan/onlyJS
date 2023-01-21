@@ -1,0 +1,65 @@
+.edit-my-profile{
+    display: block;
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-bottom: 20px;
+    text-align: right;
+    transition: color 350ms ease-in-out;
+
+    &:hover{
+        color: #9cf;
+    }
+}
+
+.my-ideas{
+    margin: 50px 0;
+    background-color: #123;
+    padding: 30px;
+    border-radius: 20px;
+
+    .head{
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .contents{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .my-idea{
+        text-align: center;
+        display: inline-block;
+        transition: transform 250ms ease-in-out;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    .comment-idea-box{
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+
+        .commented-on{
+            display: inline-block;
+            width: fit-content;
+            font-size: 1.1rem;
+            line-height: 1.2rem;
+            font-weight: 500;
+            transition: transform 250ms ease-in-out;
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
+
+        .comment{
+            font-size: 0.85rem;
+            line-height: 1.1rem;
+        }
+    }
+}

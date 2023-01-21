@@ -116,6 +116,10 @@
             line-height: 1rem;
             column-gap: 4px;
             cursor: default;
+
+            &.clickable{
+                cursor: pointer;
+            }
         }
     }
 
@@ -164,6 +168,18 @@
                 .comment-content{
                     font-size: 1rem;
                     line-height: 1rem;
+                }
+
+                .comment-sec-links{
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    column-gap: 20px;
+                    font-size: 0.85rem;
+
+                    &>div{
+                        cursor: pointer;
+                    }
                 }
             }
 
