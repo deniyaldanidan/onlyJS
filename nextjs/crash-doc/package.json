@@ -1,0 +1,28 @@
+{
+  "name": "crash-doc",
+  "version": "1.0.0",
+  "description": "learning next from crash course provided from nextJS-Docs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniyaldanidan/onlyJS.git"
+  },
+  "keywords": [
+    "nextjs"
+  ],
+  "author": "deniyaldanidan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deniyaldanidan/onlyJS/issues"
+  },
+  "homepage": "https://github.com/deniyaldanidan/onlyJS#readme",
+  "dependencies": {
+    "next": "^13.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
