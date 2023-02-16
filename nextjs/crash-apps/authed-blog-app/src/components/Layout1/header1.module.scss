@@ -1,0 +1,38 @@
+@use '../../styles/vars';
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background-color: vars.$pri-dark;
+    color: vars.$pri-bright;
+
+    &.dark{
+        background-color: vars.$ultra-dark;
+    }
+
+    .logo{
+        font-size: 1.5rem;
+        line-height: 1.4rem;
+        font-weight: 600;
+    }
+
+    .head_menus{
+        display: flex;
+        column-gap: 30px;
+        align-items: center;
+
+        .menu{
+            font-size: 1.25rem;
+            font-weight: 500;
+            transition: all 350ms ease-in-out;
+            text-transform: capitalize;
+            cursor: pointer;
+
+            &:hover{
+                color: vars.$hov-col;
+            }
+        }
+    }
+}

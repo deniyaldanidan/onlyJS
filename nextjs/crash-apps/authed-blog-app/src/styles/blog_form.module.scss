@@ -1,0 +1,68 @@
+@use '../styles/vars';
+
+
+.blog_form{
+
+    .blog_head{
+        font-size: 1.75rem;
+        font-weight: 600;
+        text-align: center;
+
+        &.dark{
+            color: vars.$pri-bright;
+        }
+    }
+
+    .blog_form_error{
+        font-size: 1.1rem;
+        font-weight: 500;
+        line-height: 1.1rem;
+        color: vars.$dark-red;
+        text-align: center;
+        margin-top: 10px;
+
+        &.dark{
+            color: vars.$bright-red;
+        }
+    }
+
+    form{
+        margin-top: 50px;
+        margin-bottom: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 45px;
+
+        .btn_grps{
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 120px;
+
+            button{
+                font-size: 1.25rem;
+                font-weight: 600;
+                line-height: 1.25rem;
+                padding: 10px 40px;
+                border-radius: 15px;
+                border: none;
+                outline: none;
+                background-color: vars.$pri-dark;
+                color: vars.$pri-bright;
+                cursor: pointer;
+                transition: all 250ms ease-in-out;
+                
+                &[type="submit"]{
+                    background-color: vars.$cust-green;
+                }
+
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}

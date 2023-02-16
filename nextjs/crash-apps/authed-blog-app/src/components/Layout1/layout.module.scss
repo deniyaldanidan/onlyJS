@@ -1,0 +1,18 @@
+@use '../../styles/vars';
+
+.section{
+    min-height: 700px;
+    padding: 45px;
+
+    &.noTop{
+        padding-top: 0px;
+    }
+
+    &.lowTop{
+        padding-top: 15px;
+    }
+
+    &.dark{
+        background-color: vars.$pri-dark;
+    }
+}

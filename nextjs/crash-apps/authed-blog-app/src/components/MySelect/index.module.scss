@@ -1,0 +1,139 @@
+@use '../../styles/vars';
+
+.selectGrp{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+
+    .label{
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+
+        &.dark{
+            color: vars.$pri-bright;
+        }
+    }
+
+    .selectCntr{
+        position: relative;
+        
+        .selectDisplayCntr{
+            width: 100%;
+            height: fit-content;
+            font-size: 1.15rem;
+            line-height: 1.15rem;
+            padding: 15px 20px;
+            width: 100%;
+            background-color: #eeeef5;
+            border-bottom: #9c99aa 2px solid;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .selected{
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 25px;
+                
+                .selected_value{
+                    display: flex;
+                    align-items: center;
+                    font-size: 1.1rem;
+                    line-height: 1.1rem;
+                    column-gap: 3px;
+                    border: 1px solid #000;
+                    padding: 3px 10px;
+                    border-radius: 5px;
+                    background-color: vars.$pri-dark;
+                    color: #fff;
+
+                    .btn{
+                        display: flex;
+                        cursor: pointer;
+                        color: #fff;
+                        transition: color 150ms ease-in-out;
+                        font-size: inherit;
+
+                        &:hover{
+                            color: #f78;
+                        }
+                    }
+                }
+
+                .empty{
+                    font-size: 1.2rem;
+                    color: #777;
+                }
+            }
+            .drpBtn{
+                display: block;
+                content: " ";
+                width: 0.85rem;
+                height: 0.85rem;
+                background-color: transparent;
+                border-left: solid #000 3px;
+                border-bottom: solid #000 3px;
+                border-top: transparent solid 3px;
+                border-right: solid transparent 3px;
+                cursor: pointer;
+                transform: rotate(-45deg) translateY(-0.4rem) translateX(0);
+                transition: all 300ms ease-in-out;
+
+                &.drpBtnActive{
+                    transform: rotate(135deg) translateY(0rem) translateX(0.4rem);
+                }
+
+            }
+        }
+        .drpCnt{
+            position: absolute;
+            width: 100%;
+            max-height: 250px;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            background-color: #acd;
+            padding: 0;
+            top: calc(100% + 2.5px);
+            border-radius: 15px;
+            padding-top: 15px;
+
+            &.hidden{
+                display: none;
+            }
+
+            .optionsHd{
+                margin-bottom: -8px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-left: 5px;
+            }
+
+            .option{
+                padding: 5px 15px;
+                font-size: 1.15rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 250ms ease-in-out;
+
+                &:hover{
+                    background-color: #234;
+                    color: #def;
+                }
+            }
+
+            .option:last-child{
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+    }
+}

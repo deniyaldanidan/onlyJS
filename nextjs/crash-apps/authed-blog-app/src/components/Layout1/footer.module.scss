@@ -1,0 +1,68 @@
+@use '../../styles/vars';
+
+.footer {
+    background-color: vars.$pri-dark;
+    padding: 50px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 45px;
+
+    &.dark{
+        background-color: vars.$ultra-dark;
+    }
+
+    .pri_section {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        column-gap: 70px;
+        align-items: center;
+
+        .social_links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 40px;
+            font-size: 1.75rem;
+
+            &>* {
+                cursor: pointer;
+                color: vars.$sec-bright;
+                transition: color 350ms ease-in-out;
+
+                &:hover {
+                    color: vars.$pri-bright;
+                }
+            }
+        }
+
+        .footer_menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 16px;
+            
+            &>* {
+                font-size: 1.1rem;
+                line-height: 1.1rem;
+                text-transform: capitalize;
+                letter-spacing: 1.25px;
+                color: vars.$sec-bright;
+                transition: color 350ms ease-in-out;
+
+                &:hover {
+                    color: vars.$pri-bright;
+
+                }
+            }
+        }
+    }
+
+    .sec_section {
+        color: vars.$sec-bright;
+        font-size: 1.1rem;
+    }
+}
