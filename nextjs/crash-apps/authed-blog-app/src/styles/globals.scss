@@ -63,3 +63,24 @@ a {
     }
   }
 }
+
+.info-page{
+  height: 550px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.danger{
+    color: #f66;
+  }
+}
+
+.mslt{
+  color: #a7f;
+  font-weight: 500;
+  font-size: 1.3rem;
+}

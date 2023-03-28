@@ -27,7 +27,7 @@ export default async function postCreateHandler(req: NextApiRequest, res: NextAp
             return res.status(400).json({ error: "Invalid category id" })
         }
 
-        const newBlog = new Blog({ title, body, excerpt, author, slug: (title as string).toLowerCase().replace(" ", "_"), categories: categories.map((cat: string) => new Types.ObjectId(cat)) });
+        const newBlog = new Blog({ title, body, excerpt, author, slug: (title as string).toLowerCase().replace(/ /g, "_"), categories: categories.map((cat: string) => new Types.ObjectId(cat)) });
 
         await newBlog.save();
         

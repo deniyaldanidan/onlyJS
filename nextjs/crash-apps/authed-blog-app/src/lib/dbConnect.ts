@@ -29,4 +29,6 @@ async function dbConnect(){
     return cached.conn;
 }
 
+export type dbConnT = typeof dbConnect;
+
 export default dbConnect;

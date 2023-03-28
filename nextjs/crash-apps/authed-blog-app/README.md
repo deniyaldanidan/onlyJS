@@ -2,17 +2,28 @@
 
 ## TODOS
 
-- [ ] Implement Dark/Light Theme using ContextApi-LocalStorage
-- [ ] sort the categories based on name a-z
-- [ ] Implement Layouts
-- [ ] Experiment with Automatic-Redirects (old-page to new-page)
-- [ ] Implement Custom 404 Page & 500 Page
-- [ ] Implement Toaster (use reapop)
-- [ ] Implement a Auth-Strategy with Roles(viewer, editor, admin) [use next-auth] with valid Strong password
-- [ ] Implement Blog/Categories-CRUD & protected routes
-- [ ] Experiment with some animations using GSAP
+- [x] Implement Dark/Light Theme using ContextApi-LocalStorage
+- [x] sort the categories based on name a-z
+- [x] Implement a Basic Layout
+- [x] Experiment with Automatic-Redirects (old-page to new-page) & redirects using getServersideprops/getStaticprops
+- [x] Implement Custom 404 Page & 500 Page
+- [x] Implement Toaster (use reapop)
 
-- [ ] Create a seperate folder to populate the mongoose database
+- [x] Experiment with nodemailer
+
+- [ ] Implement a Auth-Strategy using next-auth [Email, Google, Github, Credentials].
+    - [x] Create a custom adapter for mongoose
+    - [x] Add OAuth providers
+    - [x] Add Email-Strategy use nodemailer
+    - [ ] Custom auth pages *
+
+- [ ] NextJS Middleware
+- [x] Implement protected pages
+- [x] Implement protected APIs (using custom-callbacks-method)
+
+
+## Reminders
+- Create a seperate folder to populate the mongoose database
 
 ## Pages
 - [ ] home

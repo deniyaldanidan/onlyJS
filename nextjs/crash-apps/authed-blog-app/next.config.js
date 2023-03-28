@@ -3,6 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     styledComponents: true
+  },
+  async redirects(){
+    return [
+      {
+        source: "/oldpage",
+        destination: "/newpage",
+        permanent: true
+      }
+    ]
   }
 }
 

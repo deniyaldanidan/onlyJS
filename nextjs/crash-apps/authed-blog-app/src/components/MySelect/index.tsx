@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import clsx from 'clsx';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction,  useRef, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import useClickOutside from '@/hooks/useClickOutside';
 import { useDarkLight } from '@/context/darkLight';
@@ -11,10 +11,11 @@ type props<T> = {
     options: { value: T, name: string }[],
     children?: JSX.Element,
     executeCondition: boolean,
-    optionsHead: string
+    optionsHead: string,
+    label:string
 }
 
-export default function MySelect<T>({ selected, stateAction, options, children, executeCondition, optionsHead }: props<T>) {
+export default function MySelect<T>({ selected, stateAction, options, children, executeCondition, optionsHead, label }: props<T>) {
     const [drpState, setDrpState] = useState<boolean>(false);
     const myDiv = useRef<HTMLDivElement | null>(null);
     const {isDark} = useDarkLight();
@@ -45,9 +46,9 @@ export default function MySelect<T>({ selected, stateAction, options, children, 
 
     return (
         <div className={styles.selectGrp}>
-            <div className={clsx(styles.label, isDark && styles.dark)}>Label</div>
+            <div className={clsx(styles.label, isDark && styles.dark)}>{label}</div>
             <div className={styles.selectCntr} ref={myDiv} >
-                <div className={styles.selectDisplayCntr} >
+                <div className={clsx(styles.selectDisplayCntr, isDark && styles.dark)} >
                     <span className={styles.selected}>
                         {
                             selected.length ? selected.map(val => (
