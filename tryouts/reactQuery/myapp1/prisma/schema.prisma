@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../db.sqlite"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  createdAt DateTime @default(now())
+  posts Idea[]
+  profile Profile?
+  likes Like[]
+}
+
+model Idea {
+  id Int @id @default(autoincrement())
+  title String
+  slug String @unique
+  content String?
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  likes Like[]
+  tags IdeasOnTags[]
+}
+
+model Profile {
+  id Int @id @default(autoincrement())
+  firstname String 
+  lastname String
+  country String?
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+}
+
+model Like {
+  value String
+  liked_by User @relation(fields: [userId], references: [id])
+  userId Int
+  liked_idea Idea @relation(fields: [ideaId], references: [id])
+  ideaId Int
+  likedOn DateTime @updatedAt
+
+  @@unique([userId, ideaId])
+}
+
+model Tag{
+  id Int @id @default(autoincrement())
+  name String
+  slug String
+  description String?
+  ideas IdeasOnTags[]
+}
+
+// below is M2M
+model IdeasOnTags{
+  idea Idea @relation(fields: [ideaId], references: [id])
+  ideaId Int
+  tag Tag @relation(fields: [tagId], references: [id])
+  tagId Int
+  @@id([ideaId, tagId])
+}
